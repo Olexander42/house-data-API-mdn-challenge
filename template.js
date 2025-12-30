@@ -12,15 +12,16 @@ const emojisDict = {
 
 let template, h2, propsList;
 
-export function initHouseCardTemplate(propsKeys) {
+export function initHouseCardTemplate(housePropsKeys) {
   initTemplateEls();
   
   const mainProp = "price";
-  propsKeys.splice(propsKeys.indexOf(mainProp), 1); // don't include "price" in the list
+  housePropsKeys.splice(housePropsKeys.indexOf(mainProp), 1); // don't include "price" in the list
 
-  propsKeys.forEach((propKey) => {
+  housePropsKeys.forEach((propKey) => {
     const listItem = document.createElement('li');
     const properName = capitalize(propKey).replace("_", " ");
+    listItem.classList.add(propKey);
     listItem.dataset.label = `${emojisDict[propKey] || ""} ${properName}:`; // TODO: remove space if no emoji
         
     propsList.append(listItem);
@@ -30,15 +31,11 @@ export function initHouseCardTemplate(propsKeys) {
 }
 
 export function getUniquePropsKeys(data) {
-  const propsKeys = new Set();
+  const housePropsKeys = new Set();
 
-  data.forEach((obj) => {
-    Object.keys(obj).forEach((key) => {
-      propsKeys.add(key);
-    })
-  })
+  data.forEach((obj) => Object.keys(obj).forEach((key) => housePropsKeys.add(key)));
 
-  return [...propsKeys];
+  return [...housePropsKeys];
 }
 
 function initTemplateEls() {
