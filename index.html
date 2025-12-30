@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+  <head>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="main.js" type='module'></script>
+    <link href="style.css" rel='stylesheet'>
+    <title>House Data</title>
+  </head>
+
+  <body>
+    <h1>House search</h1>
+    <p>
+      Search for houses for sale. You can filter your search by street, number of
+      bedrooms, and number of bathrooms, or just submit the search with no filters
+      to display all available properties.
+    </p>
+    <form>
+      <div>
+        <label for="street-filter">Street:</label>
+        <select id="street-filter" name="street-filter">
+          <option value="">No street selected</option>
+        </select>
+      </div>
+      <div>
+        <label for="bedrooms-filter">Number of bedrooms:</label>
+        <select id="bedrooms-filter" name="bedrooms-filter">
+          <option value="">Any number of bedrooms</option>
+        </select>
+      </div>
+      <div>
+        <label for="bathrooms-filter">Number of bathrooms:</label>
+        <select id="bathrooms-filter" name="bathrooms-filter">
+          <option value="">Any number of bathrooms</option>
+        </select>
+      </div>
+      <div>
+        <button>Search for houses</button>
+      </div>
+    </form>
+    <p id="result-count">Results returned: 0</p>
+    <section id="output">
+      <template>
+        <article>
+          <h2></h2>
+          <ul>
+            <li></li>
+          </ul>
+        </article>
+      </template>
+    </section>
+
+  </body>
+</html>
