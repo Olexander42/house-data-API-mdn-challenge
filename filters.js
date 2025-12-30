@@ -1,42 +1,43 @@
-const filters = {};
+const filtersData = {};
 
 export function initForm(data) {
-  initAllFilters();
-  getAllOptions(data);
+  initAllFiltersEls();
+  findAllFiltersOptions(data);
   populateAllFiltersOptions();
 }
 
 export function getSelectedOptions() {
-  const selectedOptions = {};
+  const allSelectedOptions = {};
 
-  for (const [filterName, { el }] of Object.entries(filters)) {
-    if (el.value !== "") selectedOptions[filterName] = el.value;
+  for (const [filterName, { el }] of Object.entries(filtersData)) {
+    const selectedOption = el.value;
+    if (selectedOption) allSelectedOptions[filterName] = selectedOption;
   }
 
-  return selectedOptions;
+  return allSelectedOptions;
 }
 
-function initAllFilters() {
+function initAllFiltersEls() {
   // Filters' names are hardcoded in HTML
-  const selects = [...document.querySelectorAll('select')];
-  selects.forEach((select) => initFilter(select)); 
+  const allSelectElements = [...document.querySelectorAll('select')];
+  allSelectElements.forEach((selectEl) => initSingleFilter(selectEl)); 
 
-  function initFilter(select) {
+  function initFilterEl(selectEl) {
     const purifiedName = select.id.replace("-filter", "");
-    filters[purifiedName] = { el: select };
+    filtersData[purifiedName] = { el: selectEl };
   }
 }
 
-function getAllOptions(data) {
-  for (const [filterName, filterData] of Object.entries(filters)) {
-    filterData.options = getFilterOptions(filterName)
+function findAllFiltersOptions(data) {
+  for (const [filterName, filterData] of Object.entries(filtersData)) {
+    filterData.options = findSingleFilterAllOptions(filterName)
   }
   
-  function getFilterOptions(filterName) {
+  function findFilterAllOptions(filterName) {
     const options = [];
 
-    for (const house of data) {
-      const option = house[filterName]
+    for (const obj of data) {
+      const option = obj[filterName]
       if (!options.includes(option)) options.push(option);
     }
 
@@ -45,7 +46,7 @@ function getAllOptions(data) {
 }
 
 function populateAllFiltersOptions() {
-  Object.values(filters).forEach(({ el, options }) => appendOptions(el, options));
+  Object.values(filtersData).forEach(({ el, options }) => populateSingleFilterOptions(el, options));
 
   function populateFilterOptions(el, options) {
     options.forEach((option) => {
@@ -56,5 +57,6 @@ function populateAllFiltersOptions() {
   }
 }
 
+// TODO: write tests
 
 
