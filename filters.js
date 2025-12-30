@@ -6,15 +6,15 @@ export function initForm(data) {
   populateAllFiltersOptions();
 }
 
-export function getSelectedOptions() {
-  const allSelectedOptions = {};
+export function getFilteredProps() {
+  const allgetFilteredProps = {};
 
   for (const [filterName, { el }] of Object.entries(filtersData)) {
     const selectedOption = el.value;
-    if (selectedOption) allSelectedOptions[filterName] = selectedOption;
+    if (selectedOption) allgetFilteredProps[filterName] = selectedOption;
   }
 
-  return allSelectedOptions;
+  return allgetFilteredProps;
 }
 
 function initAllFiltersEls() {

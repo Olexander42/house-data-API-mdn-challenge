@@ -5,7 +5,6 @@ body {
 }
 
 form {
-
   padding: 1em;
 }
 
@@ -47,17 +46,22 @@ select {
   flex-flow: row wrap;
   justify-content: center;
   gap: 50px;
+
+  & article {
+    padding: 0 20px;
+    background-color: #efefef;
+    border: 2px solid #cccccc;
+    border-radius: 10px;
+
+    *::before {
+      content: attr(data-label);
+    }
+
+    & ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+  }
 }
 
-#output article {
-  padding: 0 20px;
-  background-color: #efefef;
-  border: 2px solid #cccccc;
-  border-radius: 10px;
-}
-
-#output ul {
-  list-style-type: none;
-  padding-left: 0;
-}
 
