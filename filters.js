@@ -18,22 +18,18 @@ export function getSelectedOptions() {
 }
 
 function initAllFiltersEls() {
-  // Filters' names are hardcoded in HTML
-  const allSelectElements = [...document.querySelectorAll('select')];
-  allSelectElements.forEach((selectEl) => initSingleFilter(selectEl)); 
-
-  function initFilterEl(selectEl) {
-    const purifiedName = select.id.replace("-filter", "");
+  const initFilterEl = (selectEl) => {
+    const purifiedName = selectEl.id.replace("-filter", "");
     filtersData[purifiedName] = { el: selectEl };
   }
+
+  // Filters' names are hardcoded in HTML
+  const allSelectElements = [...document.querySelectorAll('select')];
+  allSelectElements.forEach((selectEl) => initFilterEl(selectEl)); 
 }
 
 function findAllFiltersOptions(data) {
-  for (const [filterName, filterData] of Object.entries(filtersData)) {
-    filterData.options = findSingleFilterAllOptions(filterName)
-  }
-  
-  function findFilterAllOptions(filterName) {
+  const findFilterAllOptions = (filterName) => {
     const options = [];
 
     for (const obj of data) {
@@ -43,18 +39,22 @@ function findAllFiltersOptions(data) {
 
     return options.sort();
   }
+
+  for (const [filterName, filterData] of Object.entries(filtersData)) {
+    filterData.options = findFilterAllOptions(filterName)
+  }
 }
 
 function populateAllFiltersOptions() {
-  Object.values(filtersData).forEach(({ el, options }) => populateSingleFilterOptions(el, options));
-
-  function populateFilterOptions(el, options) {
+  const populateFilterOptions = (el, options) => {
     options.forEach((option) => {
       const optionEl = document.createElement('option');
       optionEl.value = optionEl.textContent = option;
       el.append(optionEl);
     })
   }
+
+  Object.values(filtersData).forEach(({ el, options }) => populateFilterOptions(el, options));
 }
 
 // TODO: write tests
