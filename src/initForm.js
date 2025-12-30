@@ -7,14 +7,14 @@ export function initForm(data) {
 }
 
 export function getFilteredProps() {
-  const allgetFilteredProps = {};
+  const allFilteredProps = {};
 
   for (const [filterName, { el }] of Object.entries(filtersData)) {
     const selectedOption = el.value;
-    if (selectedOption) allgetFilteredProps[filterName] = selectedOption;
+    if (selectedOption) allFilteredProps[filterName] = selectedOption;
   }
 
-  return allgetFilteredProps;
+  return allFilteredProps;
 }
 
 function initAllFiltersEls() {

@@ -3,7 +3,7 @@ let resultCount, output;
 let relevantFiltersNames;
 let searchResult;
 
-export default function handleSubmit(event, filteredProps, data, housePropsKeys, templateCard) {
+export default function handleSearch(event, filteredProps, data, housePropsKeys, templateCard) {
   event.preventDefault(); 
 
   relevantFiltersNames = Object.keys(filteredProps);
