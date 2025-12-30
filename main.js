@@ -1,24 +1,26 @@
-import { initForm, getSelectedOptions } from "./filters.js";
+import { initForm, getFilteredProps } from "./filters.js";
 import { initHouseCardTemplate, getUniquePropsKeys } from "./template.js";
-import renderHouses from "./handleSearch.js";
+import handleSubmit from "./handleSearch.js";
 
 const url = 'https://mdn.github.io/shared-assets/misc/houses.json';
-let housesData;
+let data;
 
 try {
   const response = await fetch(url);
-  housesData = await response.json();
+  data = await response.json();
 } catch(error) {
   console.error(error);
 }
 
-initForm(housesData);
+initForm(data);
 
-const propsKeys = getUniquePropsKeys(housesData);
-const templateCard = initHouseCardTemplate(propsKeys);
+const housePropsKeys = getUniquePropsKeys(data);
+const templateCard = initHouseCardTemplate(housePropsKeys);
+console.log(templateCard);
 
 const form = document.querySelector("form");
 form.addEventListener("submit", (event) => {
-  renderHouses(event, getSelectedOptions(), housesData)
+  const filteredProps = getFilteredProps();
+  handleSubmit(event, filteredProps, data, housePropsKeys, templateCard);
 }); 
 
