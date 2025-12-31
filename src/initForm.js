@@ -1,7 +1,7 @@
 const filtersData = {};
 
 export function initForm(data) {
-  initAllFiltersEls();
+  initAllFiltersProps();
   findAllFiltersOptions(data);
   populateAllFiltersOptions();
 }
@@ -17,15 +17,15 @@ export function getFilteredProps() {
   return allFilteredProps;
 }
 
-function initAllFiltersEls() {
-  const initFilterEl = (selectEl) => {
+function initAllFiltersProps() {
+  const initFilterProp = (selectEl) => {
     const purifiedName = selectEl.id.replace("-filter", "");
     filtersData[purifiedName] = { el: selectEl };
   }
 
   // Filters' names are hardcoded in HTML
   const allSelectElements = [...document.querySelectorAll('select')];
-  allSelectElements.forEach((selectEl) => initFilterEl(selectEl)); 
+  allSelectElements.forEach((selectEl) => initFilterProp(selectEl)); 
 }
 
 function findAllFiltersOptions(data) {
@@ -40,8 +40,8 @@ function findAllFiltersOptions(data) {
     return options.sort();
   }
 
-  for (const [filterName, filterData] of Object.entries(filtersData)) {
-    filterData.options = findFilterAllOptions(filterName)
+  for (const [filterKey, filterValue] of Object.entries(filtersData)) {
+    filterValue.options = findFilterAllOptions(filterKey)
   }
 }
 
@@ -58,4 +58,4 @@ function populateAllFiltersOptions() {
 }
 
 
-export { initAllFiltersEls, filtersData }; // for testing
+export { filtersData, initAllFiltersProps, findAllFiltersOptions }; // for testing
