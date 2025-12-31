@@ -57,6 +57,5 @@ function populateAllFiltersOptions() {
   Object.values(filtersData).forEach(({ el, options }) => populateFilterOptions(el, options));
 }
 
-// TODO: write tests
 
-
+export { initAllFiltersEls, filtersData }; // for testing
