@@ -58,4 +58,4 @@ function populateAllFiltersOptions() {
 }
 
 
-export { filtersData, initAllFiltersProps, findAllFiltersOptions }; // for testing
+export { filtersData, initAllFiltersProps, findAllFiltersOptions, populateAllFiltersOptions }; // for testing
