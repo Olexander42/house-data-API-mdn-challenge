@@ -1,28 +1,21 @@
 import { capitalize } from "./utils.js";
 
-const emojisDict = {
-  street: "🏘",
-  bedrooms: "🛏",
-  bathrooms: "🛁",
-  kitchen: "🍽",
-  garage: "🚗",
-  schools: "🏫",
-  bus_stations: "🚌",
-}
+let template, propsList;
 
-let template, h2, propsList;
-
-export function initHouseCardTemplate(housePropsKeys) {
+export default function initCardTemplate(objPropsKeys, mainProp) {
   initTemplateEls();
   
-  const mainProp = "price";
-  housePropsKeys.splice(housePropsKeys.indexOf(mainProp), 1); // don't include "price" in the list
+  const h2 = document.createElement('h2');
+  h2.dataset.label = properify(mainProp);
+  document.querySelector('article').append(h2);
+  objPropsKeys.splice(objPropsKeys.indexOf(mainProp), 1); // don't include in <ul>
 
-  housePropsKeys.forEach((propKey) => {
+  objPropsKeys.forEach((propKey) => {
     const listItem = document.createElement('li');
-    const properName = capitalize(propKey).replace("_", " ");
-    listItem.classList.add(propKey);
-    listItem.dataset.label = `${emojisDict[propKey] || ""} ${properName}:`; // TODO: remove space if no emoji
+    const properName = properify(propKey);
+
+    listItem.classList.add(properName);
+    listItem.dataset.label = properName;
         
     propsList.append(listItem);
   })
@@ -30,20 +23,21 @@ export function initHouseCardTemplate(housePropsKeys) {
   return template;
 }
 
-export function getUniquePropsKeys(data) {
-  const housePropsKeys = new Set();
-
-  data.forEach((obj) => Object.keys(obj).forEach((key) => housePropsKeys.add(key)));
-
-  return [...housePropsKeys];
-}
-
 function initTemplateEls() {
   const templateEl = document.querySelector("#output template");
 
   template = document.importNode(templateEl.content, true);
-  h2 = template.querySelector('h2');
   propsList = template.querySelector('ul');
 } 
+
+function properify(str) {
+  const capitalize = str.replace(str[0], str[0].toUpperCase());
+  
+  return capitalize(str).replace("_", " ");
+}
+
+
+export { properify }; // for testing
+
 
 
