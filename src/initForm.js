@@ -1,4 +1,4 @@
-const filtersData = {};
+const formData = {};
 
 export function initForm(data) {
   initAllFiltersProps();
@@ -6,21 +6,10 @@ export function initForm(data) {
   populateAllFiltersOptions();
 }
 
-export function getFilteredProps() {
-  const allFilteredProps = {};
-
-  for (const [filterName, { el }] of Object.entries(filtersData)) {
-    const selectedOption = el.value;
-    if (selectedOption) allFilteredProps[filterName] = selectedOption;
-  }
-
-  return allFilteredProps;
-}
-
 function initAllFiltersProps() {
   const initFilterProp = (selectEl) => {
     const purifiedName = selectEl.id.replace("-filter", "");
-    filtersData[purifiedName] = { el: selectEl };
+    formData[purifiedName] = { el: selectEl };
   }
 
   // Filters' names are hardcoded in HTML
@@ -40,7 +29,7 @@ function findAllFiltersOptions(data) {
     return options.sort();
   }
 
-  for (const [filterKey, filterValue] of Object.entries(filtersData)) {
+  for (const [filterKey, filterValue] of Object.entries(formData)) {
     filterValue.options = findFilterAllOptions(filterKey)
   }
 }
@@ -54,8 +43,8 @@ function populateAllFiltersOptions() {
     })
   }
 
-  Object.values(filtersData).forEach(({ el, options }) => populateFilterOptions(el, options));
+  Object.values(formData).forEach(({ el, options }) => populateFilterOptions(el, options));
 }
 
 
-export { filtersData, initAllFiltersProps, findAllFiltersOptions, populateAllFiltersOptions }; // for testing
+export { formData, initAllFiltersProps, findAllFiltersOptions, populateAllFiltersOptions }; // for testing
