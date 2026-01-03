@@ -3,35 +3,35 @@ let resultCount, output;
 let relevantFiltersNames;
 let searchResult;
 
-export default function handleSearch(event, filteredProps, data, housePropsKeys, templateCard) {
+export default function handleSearch(event, selectedOptions, data, objPropsKeys, templateCard) {
   event.preventDefault(); 
 
-  relevantFiltersNames = Object.keys(filteredProps);
-  searchResult = data.filter((house) => isHouseMatchesFilters(house, filteredProps));
+  relevantFiltersNames = Object.keys(selectedOptions);
+  searchResult = data.filter((obj) => isHouseMatchesFilters(obj, selectedOptions));
 
   if (!output) initOutputEls();
-  renderHouse(searchResult[0], housePropsKeys, templateCard);
+  renderHouse(searchResult[0], objPropsKeys, templateCard);
 
   resultCount.textContent = `Results returned: ${searchResult.length}`;
 }
 
-function isHouseMatchesFilters(house, filteredProps) {
+function isHouseMatchesFilters(obj, selectedOptions) {
   for (const filterName of relevantFiltersNames) {
-    const selectedOption = filteredProps[filterName];
-    const housePropValue = String(house[filterName]);
+    const selectedOption = selectedOptions[filterName];
+    const housePropValue = String(obj[filterName]);
 
-    if (!(selectedOption === housePropValue)) return false;
+    if (selectedOption !== housePropValue) return false;
   }
 
   return true;
 } 
 
-function renderHouse(house, housePropsKeys, templateCard) {
+function renderHouse(obj, objPropsKeys, templateCard) {
   const newCard = templateCard.cloneNode(true);
 
-  housePropsKeys.forEach((housePropKey) => {
-    const optionEl = newCard.querySelector(`.${housePropKey}`);
-    const optionVal = house[housePropKey];
+  objPropsKeys.forEach((objPropKey) => {
+    const optionEl = newCard.querySelector(`.${objPropKey}`);
+    const optionVal = obj[objPropKey];
     optionEl.textContent = optionVal;
   })
 

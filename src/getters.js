@@ -10,11 +10,11 @@ export function retrieveSelectedOptions(formData) {
 }
 
 export function retrieveUniquePropsKeys(data) {
-  const housePropsKeys = new Set();
+  const objPropsKeys = new Set();
 
-  data.forEach((obj) => Object.keys(obj).forEach((key) => housePropsKeys.add(key)));
+  data.forEach((obj) => Object.keys(obj).forEach((key) => objPropsKeys.add(key)));
   
-  return [...housePropsKeys];
+  return [...objPropsKeys];
 }
 
 
