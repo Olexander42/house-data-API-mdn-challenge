@@ -1,4 +1,4 @@
-import { isSameLength, normalizeHTML } from "../utils.js";
+import { isSameLength, isArrsMatch, normalizeHTML } from "../utils.js";
 import { filtersNames, initialDOM, expectedFiltersOptions, data, finalDOM} from "./fixture.js";
 import { formData, initAllFiltersProps, findAllFiltersOptions, populateAllFiltersOptions } from "../initForm.js";
 
@@ -12,14 +12,17 @@ describe("formData is initialized correctly", () => {
   const filtersDataNames = Object.keys(formData);
   const filtersDataSelectEls = Object.values(formData).map(({ el }) => el)
 
-  const isNamesMatch = () => filtersNames.every((name, i) => name === filtersDataNames[i]);
-  const isElsMatch = () => selectElements.every((selectEl, i) => selectEl === filtersDataSelectEls[i]);
-
   test("selectElements has the same length", () => {
     return expect(isSameLength(formData, selectElements)).toBe(true)
   });
-  test("Keys are initialized correctly", () => expect(isNamesMatch()).toBe(true));
-  test("Els are initialized correctly", () => expect(isElsMatch()).toBe(true));
+
+  test("Keys are initialized correctly", () => {
+    return expect(isArrsMatch(filtersNames, filtersDataNames)).toBe(true)
+  });
+
+  test("Els are initialized correctly", () => {
+    return expect(isArrsMatch(selectElements, filtersDataSelectEls)).toBe(true)
+  });
 })
 
 
@@ -30,10 +33,10 @@ test("Filter's options are found correctly", () => {
     return Object.entries(expectedFiltersOptions).every(([filterName, list]) => {
       const options = formData[filterName].options;
 
-      return isSameLength(list, options) && list.every((value, i) => value === options[i]);
+      return isSameLength(list, options) && isArrsMatch(list, options);
     })
   }
-
+  
   expect(isOptionsMatch()).toBe(true);
 })
 
