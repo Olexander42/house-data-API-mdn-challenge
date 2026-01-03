@@ -1,6 +1,6 @@
-import { isSameLength } from "../utils.js";
-import { filtersNames, finalDOM } from "./fixture.js";
-import { getSelectedOptions } from "../getters.js";
+import { isSameLength, isArrsMatch } from "./utils.js";
+import { filtersNames, finalDOM, data, expectedUniquePropsKeys } from "./fixture.js";
+import { retrieveSelectedOptions, retrieveUniquePropsKeys } from "../getters.js";
 
 
 test("Selected options are identified correctly", () => {
@@ -25,21 +25,25 @@ test("Selected options are identified correctly", () => {
     filter2Options[2].selected = true;
     filter2Options[0].selected = true;
 
-    return {
-      [filtersNames[0]]: filter1Select.value,
-      [filtersNames[1]]: filter2Select.value,
-      [filtersNames[2]]: filter3Select.value,
-    }
+    return [
+      [filtersNames[0], filter1Select.value],
+      [filtersNames[1], filter2Select.value],
+      [filtersNames[2], filter3Select.value],
+    ]
   })();
 
-  const selectedOptions = getSelectedOptions(formData); // returns object { filter name: selected value, ... }
+  const selectedOptions = retrieveSelectedOptions(formData); // returns object { filter name: selected value, ... }
 
   const isSelectValuesSame = () => {
-    return Object.entries(expectedSelectedOptions).every(([select, value]) => {
+    return expectedSelectedOptions.every(([select, value]) => {
       return selectedOptions[select] === value;
     })
   }
   
   expect(isSameLength(expectedSelectedOptions, selectedOptions)).toBe(true);
   expect(isSelectValuesSame()).toBe(true);
+})
+
+test ("Unique Object's Properties from Data are retrieved correctly", () => {
+  expect(isArrsMatch(expectedUniquePropsKeys, retrieveUniquePropsKeys(data))).toBe(true);
 })

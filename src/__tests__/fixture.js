@@ -1,22 +1,19 @@
 export const filtersNames = ["street", "bedrooms", "bathrooms"];
 
-export const initialDOM = `
-  <select id="${filtersNames[0]}-filter" name="${filtersNames[0]}-filter">
-    <option value="">All options</option>
-  </select>
-  <select id="${filtersNames[1]}-filter" name="${filtersNames[1]}-filter">
-    <option value="">All options</option>
-  </select>
-  <select id="${filtersNames[2]}-filter" name="${filtersNames[2]}-filter">
-    <option value="">All options</option>
-  </select>
-`
-
 export const expectedFiltersOptions = {
-  [filtersNames[0]]: ["Tavistock Road", "Maple Avenue"].sort(),
-  [filtersNames[1]]: [4, 3].sort(),
-  [filtersNames[2]]: [1, 2].sort(),
+  [filtersNames[0]]: ["Maple Avenue", "Tavistock Road"],
+  [filtersNames[1]]: [3, 4],
+  [filtersNames[2]]: [1, 2],
 }
+
+export const expectedUniquePropsKeys = [
+  "house_number",
+  filtersNames[0],
+  filtersNames[1],
+  filtersNames[2],
+  "room_sizes",
+  "price",
+]
 
 export const data = [
   {
@@ -43,6 +40,18 @@ export const data = [
   }
 ]
 
+export const initialDOM = `
+  <select id="${filtersNames[0]}-filter" name="${filtersNames[0]}-filter">
+    <option value="">All options</option>
+  </select>
+  <select id="${filtersNames[1]}-filter" name="${filtersNames[1]}-filter">
+    <option value="">All options</option>
+  </select>
+  <select id="${filtersNames[2]}-filter" name="${filtersNames[2]}-filter">
+    <option value="">All options</option>
+  </select>
+`
+
 export const finalDOM =  `
   <select id="${filtersNames[0]}-filter" name="${filtersNames[0]}-filter">
     <option value="">All options</option>
@@ -64,3 +73,9 @@ export const finalDOM =  `
 function getFilterOption(nameIndex, optionIndex) {
   return expectedFiltersOptions[filtersNames[nameIndex]][optionIndex];
 }
+
+
+
+
+
+
