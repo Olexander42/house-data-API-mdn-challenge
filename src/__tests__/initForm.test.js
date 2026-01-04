@@ -41,12 +41,12 @@ test("Filter's options are found correctly", () => {
 })
 
 
-const expectedDOM = document.createElement('div');
-expectedDOM.innerHTML = finalDOM;
+const expectedForm = document.createElement('form');
+expectedForm.innerHTML = finalDOM;
 populateAllFiltersOptions();
 
 test("Options are populated correctly", () => {
-  expect(isNodesSame(expectedDOM, document.body)).toBe(true);
+  expect(isNodesSame(expectedForm, document.body, 'select', true)).toBe(true);
 })
 
 
