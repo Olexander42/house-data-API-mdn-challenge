@@ -2,41 +2,43 @@ export const filtersNames = ["street", "bedrooms", "bathrooms"];
 
 export const expectedFiltersOptions = {
   [filtersNames[0]]: ["Maple Avenue", "Tavistock Road"],
-  [filtersNames[1]]: [3, 4],
-  [filtersNames[2]]: [1, 2],
+  [filtersNames[1]]: ["3", "4"],
+  [filtersNames[2]]: ["1", "2"],
 }
 
 export const expectedUniquePropsKeys = [
-  "house_number",
+  "price",
   filtersNames[0],
+  "house_number",
   filtersNames[1],
   filtersNames[2],
   "room_sizes",
-  "price",
+  ,
 ]
 
 export const data = [
   {
-    "house_number": "1",
+    "price": 360000,
     [filtersNames[0]]: getFilterOption(0, 0),
+    "house_number": "1",
     [filtersNames[1]]: getFilterOption(1, 0),
     [filtersNames[2]]: getFilterOption(2, 0),
     "room_sizes": {
       "bedroom1": 12,
       "bedroom2": 15,
     },
-    "price": 360000
+    
   },
   {
-    "house_number": "12",
+    "price": 480000,
     [filtersNames[0]]: getFilterOption(0, 1),
+    "house_number": "12",
     [filtersNames[1]]: getFilterOption(1, 1),
     [filtersNames[2]]: getFilterOption(2, 1),
     "room_sizes": {
       "bedroom1": 14,
       "bedroom2": 12,
     },
-    "price": 480000
   }
 ]
 
@@ -70,9 +72,10 @@ export const finalDOM =  `
   </select>
 `
 
-function getFilterOption(nameIndex, optionIndex) {
+export function getFilterOption(nameIndex, optionIndex) {
   return expectedFiltersOptions[filtersNames[nameIndex]][optionIndex];
 }
+
 
 
 

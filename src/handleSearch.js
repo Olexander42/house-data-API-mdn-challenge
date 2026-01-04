@@ -1,32 +1,40 @@
-let resultCount, output;
-
-let relevantFiltersNames;
+let output;
 let searchResult;
 
 export default function handleSearch(event, selectedOptions, data, objPropsKeys, templateCard) {
   event.preventDefault(); 
 
-  relevantFiltersNames = Object.keys(selectedOptions);
-  searchResult = data.filter((obj) => isHouseMatchesFilters(obj, selectedOptions));
+  
+  searchResult = data.filter((obj) => isObjMatchesFilters(obj, selectedOptions));
 
-  if (!output) initOutputEls();
-  renderHouse(searchResult[0], objPropsKeys, templateCard);
+  if (!output) output = document.getElementById("output");
+  renderCard(searchResult[0], objPropsKeys, templateCard);
 
-  resultCount.textContent = `Results returned: ${searchResult.length}`;
+  document.getElementById("result-count")
+    .textContent = `Results returned: ${searchResult.length}`;
 }
 
-function isHouseMatchesFilters(obj, selectedOptions) {
-  for (const filterName of relevantFiltersNames) {
-    const selectedOption = selectedOptions[filterName];
-    const housePropValue = String(obj[filterName]);
-
-    if (selectedOption !== housePropValue) return false;
+/**
+ * Matches each selected option with obj's correspondent property's value.
+ * @param {Object<string, string>} obj - an item in database
+ * @param {Array<string>} selectedOptions - passed by form
+ * @returns {Boolean} 
+ */
+function isObjMatchesFilters(obj, selectedOptions) {
+  const relevantFiltersNames = selectedOptions.filter(
+    ([filterName, selectedOption]) => {
+      return selectedOption.trim().length > 0; // exclude not selected filters
+  });
+ 
+  for (const [filterName, selectedOption] of relevantFiltersNames) {
+    const objPropValue = String(obj[filterName]);
+    if (selectedOption !== objPropValue) return false;
   }
 
   return true;
 } 
 
-function renderHouse(obj, objPropsKeys, templateCard) {
+function renderCard(obj, objPropsKeys, templateCard) {
   const newCard = templateCard.cloneNode(true);
 
   objPropsKeys.forEach((objPropKey) => {
@@ -38,10 +46,8 @@ function renderHouse(obj, objPropsKeys, templateCard) {
   output.append(newCard);
 }
 
-function initOutputEls() {
-  resultCount = document.getElementById("result-count");
-  output = document.getElementById("output");
-}
+export { isObjMatchesFilters }; // for testing
+
 
 
 
