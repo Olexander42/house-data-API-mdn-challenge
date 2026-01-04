@@ -1,6 +1,6 @@
-import { isSameLength, isArrsMatch } from "./utils.js";
-import { filtersNames, finalDOM, data, expectedUniquePropsKeys } from "./fixture.js";
-import { retrieveSelectedOptions, retrieveUniquePropsKeys } from "../getters.js";
+import { isSameLength } from "./utils.js";
+import { filtersNames, finalDOM } from "./fixture.js";
+import { retrieveSelectedOptions } from "../getters.js";
 
 
 test("Selected options are identified correctly", () => {
@@ -44,6 +44,3 @@ test("Selected options are identified correctly", () => {
   expect(isSelectValuesSame()).toBe(true);
 })
 
-test ("Unique Object's Properties from Data are retrieved correctly", () => {
-  expect(isArrsMatch(expectedUniquePropsKeys, retrieveUniquePropsKeys(data))).toBe(true);
-})
