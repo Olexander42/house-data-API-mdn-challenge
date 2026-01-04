@@ -1,3 +1,17 @@
 export const isSameLength = (obj1, obj2) => Object.keys(obj1).length === Object.keys(obj2).length;
 export const isArrsMatch = (arr1, arr2) => arr1.every((val, i) => val === arr2[i]);
-export const normalizeHTML = (html) => html.replace(/\s*(<|>)\s*/g, '$1').trim(); // remove whitespace between nodes
+
+export const isNodesSame = (expDom, actDom) => {
+  const expectedNodes = [...expDom.querySelectorAll('select')]
+  const actualNodes = [...actDom.querySelectorAll('select')];
+
+  if (!isSameLength(expectedNodes, actualNodes)) return false; 
+
+  const normalizeHTML = (html) => html.replace(/\s*(<|>)\s*/g, '$1').trim(); // remove whitespace between nodes
+
+  return expectedNodes.every((node, i) => {
+    node.innerHTML = normalizeHTML(node.innerHTML);
+    actualNodes[i].innerHTML = normalizeHTML(actualNodes[i].innerHTML);
+    return node.isEqualNode(actualNodes[i]);
+  });
+}
