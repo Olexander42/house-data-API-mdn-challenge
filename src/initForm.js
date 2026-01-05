@@ -1,4 +1,4 @@
-const formData = {};
+const formData = {}
 
 export function initForm(data) {
   initAllFiltersProps();

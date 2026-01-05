@@ -1,3 +1,6 @@
+import { properify } from "./utils.js";
+
+
 export default function populateCardTemplate(objPropsKeys, mainProp = objPropsKeys[0]) {
   const article = document.importNode(
     document.querySelector("#output template")
@@ -24,15 +27,6 @@ export default function populateCardTemplate(objPropsKeys, mainProp = objPropsKe
   return article;
 }
 
-
-function properify(str) {
-  const capitalize = (str) => str.replace(str[0], str[0].toUpperCase());
-
-  return capitalize(str).replace("_", " ");
-}
-
-
-export { properify }; // for testing
 
 
 

@@ -1,10 +1,10 @@
 import { isSameLength } from "./utils.js";
-import { filtersNames, finalDOM } from "./fixture.js";
+import { filtersNames, expectedFormDOM } from "./fixture.js";
 import { retrieveSelectedOptions } from "../getters.js";
 
 
 test("Selected options are identified correctly", () => {
-  document.body.innerHTML = finalDOM;
+  document.body.innerHTML = expectedFormDOM;
 
   const filter1Select = document.getElementById(`${filtersNames[0]}-filter`);
   const filter2Select = document.getElementById(`${filtersNames[1]}-filter`);
@@ -21,9 +21,9 @@ test("Selected options are identified correctly", () => {
     const filter2Options = [...filter2Select.getElementsByTagName('option')];
     const filter3Options = [...filter3Select.getElementsByTagName('option')];
 
-    filter1Options[1].selected = true;
-    filter2Options[2].selected = true;
-    filter2Options[0].selected = true;
+    filter1Options[0].selected = true;
+    filter2Options[1].selected = true;
+    filter3Options[2].selected = true;
 
     return [
       [filtersNames[0], filter1Select.value],

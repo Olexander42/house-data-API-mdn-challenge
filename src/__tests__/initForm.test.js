@@ -46,7 +46,7 @@ expectedForm.innerHTML = expectedFormDOM;
 populateAllFiltersOptions();
 
 test("Options are populated correctly", () => {
-  expect(isNodesSame(expectedForm, document.body, '*', false)).toBe(true);
+  expect(isNodesSame(expectedForm, document.body)).toBe(true);
 })
 
 
