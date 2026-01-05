@@ -1,4 +1,4 @@
-import { properify } from "../initTemplate.js";
+import { properify } from "../utils.js";
 
 export const filtersNames = ["street", "bedrooms", "bathrooms"];
 
@@ -76,7 +76,7 @@ export const expectedFormDOM =  `
 
 const propsKeys = expectedUniquePropsKeys;
 
-export const expectedTemplateDOM = `
+export const expectedCardTemplateDOM = `
   <h2 data-label="${properify(propsKeys[0])}"></h2>
   <ul>
     <li data-label="${properify(propsKeys[1])}"></li>
@@ -87,7 +87,18 @@ export const expectedTemplateDOM = `
   </ul>
 `
 
+export const obj = data[0];
 
+export const expectedCardDOM = `
+  <h2 data-label="${properify(propsKeys[0])}">${obj[propsKeys[0]]}</h2>
+  <ul>
+    <li data-label="${properify(propsKeys[1])}">${obj[propsKeys[1]]}</li>
+    <li data-label="${properify(propsKeys[2])}">${obj[propsKeys[2]]}</li>
+    <li data-label="${properify(propsKeys[3])}">${obj[propsKeys[3]]}</li>
+    <li data-label="${properify(propsKeys[4])}">${obj[propsKeys[4]]}</li>
+    <li data-label="${properify(propsKeys[5])}">${obj[propsKeys[5]]}</li>
+  </ul>
+`
 
 export function getFilterOption(nameIndex, optionIndex) {
   return expectedFiltersOptions[filtersNames[nameIndex]][optionIndex];

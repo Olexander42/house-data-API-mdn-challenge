@@ -1,3 +1,6 @@
+import { properify } from "./utils.js";
+
+
 let output;
 let searchResult;
 
@@ -8,25 +11,25 @@ export default function handleSearch(event, selectedOptions, data, objPropsKeys,
   searchResult = data.filter((obj) => isObjMatchesFilters(obj, selectedOptions));
 
   if (!output) output = document.getElementById("output");
-  renderCard(searchResult[0], objPropsKeys, templateCard);
+  populateCard(searchResult[0], objPropsKeys, templateCard);
 
   document.getElementById("result-count")
     .textContent = `Results returned: ${searchResult.length}`;
 }
 
 /**
- * Matches each selected option with obj's correspondent property's value.
- * @param {Object<string, string>} obj - an item in database
- * @param {Array<string>} selectedOptions - passed by form
- * @returns {Boolean} 
+ * Matches each filter's selected option with obj's correspondent property's value.
+ * @param {Object<string, string|number>} obj - an item in database
+ * @param {Array<[string, string]>} selectedOptions - passed by form
+ * @returns {boolean}
  */
 function isObjMatchesFilters(obj, selectedOptions) {
-  const relevantFiltersNames = selectedOptions.filter(
+  const relevantFilters = selectedOptions.filter(
     ([filterName, selectedOption]) => {
       return selectedOption.trim().length > 0; // exclude not selected filters
   });
  
-  for (const [filterName, selectedOption] of relevantFiltersNames) {
+  for (const [filterName, selectedOption] of relevantFilters) {
     const objPropValue = String(obj[filterName]);
     if (selectedOption !== objPropValue) return false;
   }
@@ -34,19 +37,19 @@ function isObjMatchesFilters(obj, selectedOptions) {
   return true;
 } 
 
-function renderCard(obj, objPropsKeys, templateCard) {
-  const newCard = templateCard.cloneNode(true);
+function populateCard(obj, objPropsKeys, templateCard) {
+  const card = templateCard.cloneNode(true);
 
   objPropsKeys.forEach((objPropKey) => {
-    const optionEl = newCard.querySelector(`.${objPropKey}`);
+    const optionEl = card.querySelector(`[data-label="${properify(objPropKey)}"]`);
     const optionVal = obj[objPropKey];
     optionEl.textContent = optionVal;
   })
 
-  output.append(newCard);
+  return card;
 }
 
-export { isObjMatchesFilters }; // for testing
+export { isObjMatchesFilters, populateCard }; // for testing
 
 
 
