@@ -1,14 +1,15 @@
-export default function initCardTemplate(objPropsKeys, mainProp = objPropsKeys[0]) {
-  const template = document.importNode(
-    document.querySelector("#output template").content,
+export default function populateCardTemplate(objPropsKeys, mainProp = objPropsKeys[0]) {
+  const article = document.importNode(
+    document.querySelector("#output template")
+      .content.firstElementChild,
     true
   )
   
-  const propsList = template.querySelector('ul');
+  const propsList = article.querySelector('ul');
 
   const h2 = document.createElement('h2');
   h2.dataset.label = properify(mainProp);
-  template.querySelector('article').insertBefore(h2, propsList);
+  article.insertBefore(h2, propsList);
 
   objPropsKeys.splice(objPropsKeys.indexOf(mainProp), 1); // don't include in propsList
 
@@ -20,7 +21,7 @@ export default function initCardTemplate(objPropsKeys, mainProp = objPropsKeys[0
     propsList.append(listItem);
   })
   
-  return template;
+  return article;
 }
 
 

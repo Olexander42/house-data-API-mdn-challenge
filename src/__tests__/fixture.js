@@ -1,3 +1,5 @@
+import { properify } from "../initTemplate.js";
+
 export const filtersNames = ["street", "bedrooms", "bathrooms"];
 
 export const expectedFiltersOptions = {
@@ -42,7 +44,7 @@ export const data = [
   }
 ]
 
-export const initialDOM = `
+export const initialFormDOM = `
   <select id="${filtersNames[0]}-filter" name="${filtersNames[0]}-filter">
     <option value="">All options</option>
   </select>
@@ -54,7 +56,7 @@ export const initialDOM = `
   </select>
 `
 
-export const finalDOM =  `
+export const expectedFormDOM =  `
   <select id="${filtersNames[0]}-filter" name="${filtersNames[0]}-filter">
     <option value="">All options</option>
     <option value="${getFilterOption(0, 0)}">${getFilterOption(0, 0)}</option>
@@ -71,6 +73,21 @@ export const finalDOM =  `
     <option value="${getFilterOption(2, 1)}">${getFilterOption(2, 1)}</option>
   </select>
 `
+
+const propsKeys = expectedUniquePropsKeys;
+
+export const expectedTemplateDOM = `
+  <h2 data-label="${properify(propsKeys[0])}"></h2>
+  <ul>
+    <li data-label="${properify(propsKeys[1])}"></li>
+    <li data-label="${properify(propsKeys[2])}"></li>
+    <li data-label="${properify(propsKeys[3])}"></li>
+    <li data-label="${properify(propsKeys[4])}"></li>
+    <li data-label="${properify(propsKeys[5])}"></li>
+  </ul>
+`
+
+
 
 export function getFilterOption(nameIndex, optionIndex) {
   return expectedFiltersOptions[filtersNames[nameIndex]][optionIndex];
