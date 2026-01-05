@@ -1,5 +1,5 @@
 import populateCardTemplate from "../initTemplate.js";
-import { expectedUniquePropsKeys as propsKeys, expectedTemplateDOM } from "./fixture.js";
+import { expectedUniquePropsKeys as propsKeys, expectedCardTemplateDOM } from "./fixture.js";
 import { isNodesSame } from "./utils.js";
 
 
@@ -14,7 +14,7 @@ document.body.innerHTML = `
 `
 
 const expectedTemplate = document.createElement('article');
-expectedTemplate.innerHTML = expectedTemplateDOM;
+expectedTemplate.innerHTML = expectedCardTemplateDOM;
 
 const cardTemplate = populateCardTemplate(propsKeys);
 const actualTemplate = cardTemplate;
