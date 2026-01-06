@@ -7,7 +7,6 @@ let searchResult;
 export default function handleSearch(event, selectedOptions, data, objPropsKeys, templateCard) {
   event.preventDefault(); 
 
-  
   searchResult = data.filter((obj) => isObjMatchesFilters(obj, selectedOptions));
 
   if (!output) output = document.getElementById("output");
@@ -21,7 +20,7 @@ export default function handleSearch(event, selectedOptions, data, objPropsKeys,
  * Matches each filter's selected option with obj's correspondent property's value.
  * @param {Object<string, string|number>} obj - an item in database
  * @param {Array<[string, string]>} selectedOptions - passed by form
- * @returns {boolean}
+ * @returnss {boolean}
  */
 function isObjMatchesFilters(obj, selectedOptions) {
   const relevantFilters = selectedOptions.filter(
@@ -50,7 +49,6 @@ function populateCard(obj, objPropsKeys, templateCard) {
 }
 
 export { isObjMatchesFilters, populateCard }; // for testing
-
 
 
 

@@ -1,50 +1,63 @@
-const formData = {}
+/**
+ * @type {import("./types").FiltersData}
+ */
+const formData = {};
 
+/** 
+ * Runs once an API response has been received.
+ * @param {import("./types").APIResponse} data
+ * @returns {void} Mutates the module-level formData
+ */
 export function initForm(data) {
-  initAllFiltersProps();
-  findAllFiltersOptions(data);
-  populateAllFiltersOptions();
+  const selectElements = [...document.querySelectorAll('select')];
+  initFiltersProps(selectElements);
+
+  initFiltersOptions(data);
+  populateFiltersOptions();
 }
 
-function initAllFiltersProps() {
-  const initFilterProp = (selectEl) => {
+/**
+ * Initializes `formData` properties mapping filter names to their select elements.
+ * @param {HTMLSelectElement[]} selectElements - Queried from the document
+ * @returns {void} Mutates the module-level formData
+ */
+function initFiltersProps(selectElements) {
+  selectElements.forEach((selectEl) => {
     const purifiedName = selectEl.id.replace("-filter", "");
     formData[purifiedName] = { el: selectEl };
-  }
-
-  // Filters' names are hardcoded in HTML
-  const allSelectElements = [...document.querySelectorAll('select')];
-  allSelectElements.forEach((selectEl) => initFilterProp(selectEl)); 
+    }); 
 }
 
-function findAllFiltersOptions(data) {
-  const findFilterAllOptions = (filterName) => {
-    const options = [];
+/** 
+ * @param {import("./types").APIResponse} data
+ * @returns {void} Mutates the module-level formData
+ */
+function initFiltersOptions(data) {
+  for (const [filterName, filterData] of Object.entries(formData)) {
+    filterData.options = ((filterName) => {
+      /** @type {string[]} */
+      const options = [];
 
-    for (const obj of data) {
-      const option = obj[filterName]
-      if (!options.includes(option)) options.push(option);
-    }
+      for (const obj of data) {
+        const option = String(obj[filterName]);
+        if (!options.includes(option)) options.push(option);
+      }
 
-    return options.sort();
-  }
-
-  for (const [filterKey, filterValue] of Object.entries(formData)) {
-    filterValue.options = findFilterAllOptions(filterKey)
+      return options.sort();
+    })(filterName);
   }
 }
 
-function populateAllFiltersOptions() {
-  const populateFilterOptions = (el, options) => {
+/** @returns {void} Mutates the `form` DOM */
+function populateFiltersOptions() {
+  Object.values(formData).forEach(({ el, options }) => {
     options.forEach((option) => {
       const optionEl = document.createElement('option');
       optionEl.value = optionEl.textContent = option;
       el.append(optionEl);
     })
-  }
-
-  Object.values(formData).forEach(({ el, options }) => populateFilterOptions(el, options));
+  });
 }
 
 
-export { formData, initAllFiltersProps, findAllFiltersOptions, populateAllFiltersOptions }; // for testing
+export { formData, initFiltersProps, initFiltersOptions, populateFiltersOptions }; // for testing
