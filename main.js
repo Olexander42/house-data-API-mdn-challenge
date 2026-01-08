@@ -1,5 +1,5 @@
 import { retrieveUniquePropsKeys, retrieveSelectedOptions } from "./src/getters.js";
-import { initForm } from "./src/initForm.js";
+import { initForm, formData } from "./src/initForm.js";
 import populateCardTemplate from "./src/initTemplate.js";
 import handleSearch from "./src/handleSearch.js";
 
@@ -23,6 +23,6 @@ const templateCard = populateCardTemplate(objPropsKeys);
 
 const form = document.querySelector("form");
 form.addEventListener("submit", (event) => {
-  const selectedOptions = retrieveSelectedOptions();
+  const selectedOptions = retrieveSelectedOptions(formData);
   handleSearch(event, selectedOptions, data, objPropsKeys, templateCard);
 });
