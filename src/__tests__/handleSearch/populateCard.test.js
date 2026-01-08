@@ -1,6 +1,6 @@
-import { populateCard } from "../handleSearch.js";
-import { expectedCardDOM, obj, expectedUniquePropsKeys as propsKeys, expectedCardTemplateDOM as cardTemplateDom } from "./fixture.js";
-import { isNodesSame } from "./utils.js";
+import { populateCard } from "../../handleSearch.js";
+import { expectedCardDOM, obj, expectedUniquePropsKeys as propsKeys, expectedCardTemplateDOM as cardTemplateDom } from "../fixture.js";
+import { isNodesSame } from "../utils.js";
 
 
 const expectedCard = document.createElement('article');

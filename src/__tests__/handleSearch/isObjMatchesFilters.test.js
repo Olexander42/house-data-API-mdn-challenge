@@ -1,5 +1,5 @@
-import { isObjMatchesFilters } from "../handleSearch.js";
-import { filtersNames, getFilterOption, data } from "./fixture.js";
+import { isObjMatchesFilters } from "../../handleSearch.js";
+import { filtersNames, getFilterOption, data } from "../fixture.js";
 
 
 describe("Data objects are matched correctly", () => {
@@ -19,6 +19,8 @@ describe("Data objects are matched correctly", () => {
 
   const firstObj = data[0];
   const secondObj = data[1];
+
+  debugger;
 
   test("Matches if no filters are applied", () => {
     data.forEach((obj) => {

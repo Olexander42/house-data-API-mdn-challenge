@@ -1,6 +1,6 @@
-import populateCardTemplate from "../initTemplate.js";
-import { expectedUniquePropsKeys as propsKeys, expectedCardTemplateDOM } from "./fixture.js";
-import { isNodesSame } from "./utils.js";
+import populateCardTemplate from "../../init/initTemplate.js";
+import { expectedUniquePropsKeys as propsKeys, expectedCardTemplateDOM } from "../fixture.js";
+import { isNodesSame } from "../utils.js";
 
 
 document.body.innerHTML = `    
@@ -20,5 +20,5 @@ const cardTemplate = populateCardTemplate(propsKeys);
 const actualTemplate = cardTemplate;
 
 test("Card template is generated correctly", () => {
-  expect(isNodesSame(expectedTemplate, actualTemplate, '*', true)).toBe(true);
+  expect(isNodesSame(expectedTemplate, actualTemplate)).toBe(true);
 })

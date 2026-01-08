@@ -1,12 +1,12 @@
-import { retrieveUniquePropsKeys, retrieveSelectedOptions } from "./src/getters.js";
-import { initForm, formData } from "./src/initForm.js";
-import populateCardTemplate from "./src/initTemplate.js";
+import { retrieveUniquePropsKeys, retrieveSelectedOptions } from "./src/common/getters.js";
+import { initForm, formData } from "./src/init/initForm.js";
+import populateCardTemplate from "./src/init/initTemplate.js";
 import handleSearch from "./src/handleSearch.js";
 
 
 const url = 'https://mdn.github.io/shared-assets/misc/houses.json'; 
 
-/** @type {import("./src/types").APIResponse} */
+/** @type {import("./src/common/types").APIResponse} */
 let data;
 
 try {

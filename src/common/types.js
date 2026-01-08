@@ -1,5 +1,5 @@
 /** 
- * @typedef {{[key: string]: string|number|(string|number)[]}[]} APIResponse
+ * @typedef {{[key: string]: unknown}} APIResponse
  */
 
 /**

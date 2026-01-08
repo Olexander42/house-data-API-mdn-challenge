@@ -1,10 +1,11 @@
-import { isSameLength, isArrsMatch, isNodesSame } from "./utils.js";
-import { filtersNames, initialFormDOM, expectedFiltersOptions, data, expectedFormDOM} from "./fixture.js";
-import { formData, initAllFiltersProps, findAllFiltersOptions, populateAllFiltersOptions } from "../initForm.js";
+import { isSameLength, isArrsMatch, isNodesSame } from "../utils.js";
+import { filtersNames, initialFormDOM, expectedFiltersOptions, data, expectedFormDOM} from "../fixture.js";
+import { formData, initFiltersProps, initFiltersOptions, populateFiltersOptions } from "../../init/initForm.js";
 
 
 document.body.innerHTML = initialFormDOM;
-initAllFiltersProps();
+const selectElements = [...document.querySelectorAll('select')];
+initFiltersProps(selectElements);
 
 describe("formData is initialized correctly", () => {
   const selectElements = [...document.querySelectorAll('select')];
@@ -25,8 +26,8 @@ describe("formData is initialized correctly", () => {
   });
 })
 
-
-findAllFiltersOptions(data);
+// @ts-ignore
+initFiltersOptions(data);
 
 test("Filter's options are found correctly", () => {
   const isOptionsMatch = () => {
@@ -43,11 +44,13 @@ test("Filter's options are found correctly", () => {
 
 const expectedForm = document.createElement('form');
 expectedForm.innerHTML = expectedFormDOM;
-populateAllFiltersOptions();
+populateFiltersOptions();
 
 test("Options are populated correctly", () => {
   expect(isNodesSame(expectedForm, document.body)).toBe(true);
 })
+
+
 
 
 

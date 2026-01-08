@@ -1,24 +1,22 @@
 /**
- * Iterates through each filter `select` element and extracts its `selected` val
- * @param {import("./types").FiltersData} formData
+ * @param {import("./types.js").FiltersData} formData
  * @returns {{[filterName:string]: string}} One `selected` option value per filter
  */
 export function retrieveSelectedOptions(formData) {
+  /** @type {{ [filterName: string]: string }} */
   const allSelectedOptions = {};
 
   for (const [filterName, { el }] of Object.entries(formData)) {
     const selectedOption = el.value;
     allSelectedOptions[filterName] = selectedOption;
   }
-
+ 
   return allSelectedOptions;
 }
 
 /**
- * Iterates through the API response data units
- * and collects all unique property names.
- * @param {import("./types").APIResponse} data 
- * @returns {Array.<string>} 
+ * @param {import("./types.js").APIResponse} data 
+ * @returns {string[]} 
  */
 export function retrieveUniquePropsKeys(data) {
   const uniquePropsKeys = new Set();

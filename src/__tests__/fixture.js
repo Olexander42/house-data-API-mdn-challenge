@@ -1,4 +1,4 @@
-import { properify } from "../utils.js";
+import { properify } from "../common/utils.js";
 
 export const filtersNames = ["street", "bedrooms", "bathrooms"];
 

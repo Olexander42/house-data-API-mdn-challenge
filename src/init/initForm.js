@@ -1,11 +1,11 @@
 /**
- * @type {import("./types").FiltersData}
+ * @type {import("../common/types").FiltersData}
  */
-const formData = {};
+export const formData = {};
 
 /** 
  * Runs once an API response has been received.
- * @param {import("./types").APIResponse} data
+ * @param {import("../common/types").APIResponse} data
  * @returns {void} Mutates the module-level formData
  */
 export function initForm(data) {
@@ -24,12 +24,13 @@ export function initForm(data) {
 function initFiltersProps(selectElements) {
   selectElements.forEach((selectEl) => {
     const purifiedName = selectEl.id.replace("-filter", "");
+    // @ts-ignore
     formData[purifiedName] = { el: selectEl };
     }); 
 }
 
 /** 
- * @param {import("./types").APIResponse} data
+ * @param {import("../common/types").APIResponse} data
  * @returns {void} Mutates the module-level formData
  */
 function initFiltersOptions(data) {
@@ -60,4 +61,4 @@ function populateFiltersOptions() {
 }
 
 
-export { formData, initFiltersProps, initFiltersOptions, populateFiltersOptions }; // for testing
+export { initFiltersProps, initFiltersOptions, populateFiltersOptions }; // for testing

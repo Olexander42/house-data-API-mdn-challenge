@@ -1,14 +1,14 @@
-import { isSameLength } from "./utils.js";
-import { filtersNames, expectedFormDOM } from "./fixture.js";
-import { retrieveSelectedOptions } from "../getters.js";
+import { isSameLength } from "../utils.js";
+import { filtersNames, expectedFormDOM } from "../fixture.js";
+import { retrieveSelectedOptions } from "../../common/getters.js";
 
 
 test("Selected options are identified correctly", () => {
   document.body.innerHTML = expectedFormDOM;
 
-  const filter1Select = document.getElementById(`${filtersNames[0]}-filter`);
-  const filter2Select = document.getElementById(`${filtersNames[1]}-filter`);
-  const filter3Select = document.getElementById(`${filtersNames[2]}-filter`);
+  const filter1Select = /** @type {HTMLSelectElement} */ (document.getElementById(`${filtersNames[0]}-filter`));
+  const filter2Select = /** @type {HTMLSelectElement} */ (document.getElementById(`${filtersNames[1]}-filter`));
+  const filter3Select = /** @type {HTMLSelectElement} */ (document.getElementById(`${filtersNames[2]}-filter`));
 
   const formData = {
     [filtersNames[0]]: { el: filter1Select },
@@ -32,7 +32,8 @@ test("Selected options are identified correctly", () => {
     ]
   })();
 
-  const selectedOptions = retrieveSelectedOptions(formData); // returns object { filter name: selected value, ... }
+  // @ts-ignore
+  const selectedOptions = retrieveSelectedOptions(formData);
 
   const isSelectValuesSame = () => {
     return expectedSelectedOptions.every(([select, value]) => {

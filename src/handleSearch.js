@@ -1,11 +1,11 @@
-import { properify } from "./utils.js";
+import { properify } from "./common/utils.js";
 
 
 let output;
 let searchResult;
 
 export default function handleSearch(event, selectedOptions, data, objPropsKeys, templateCard) {
-  event.preventDefault(); 
+  event.preventDefault();
 
   searchResult = data.filter((obj) => isObjMatchesFilters(obj, selectedOptions));
 
