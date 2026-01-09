@@ -13,7 +13,7 @@ try {
   const response = await fetch(url);
   data = await response.json();
 } catch(error) {
-  console.error(error);
+  throw new Error;
 }
 
 initForm(data);
@@ -21,7 +21,8 @@ initForm(data);
 const objPropsKeys = retrieveUniquePropsKeys(data);
 const templateCard = populateCardTemplate(objPropsKeys);
 
-const form = document.querySelector("form");
+const form = /** @type {HTMLFormElement} */ (document.querySelector('form'));
+
 form.addEventListener("submit", (event) => {
   const selectedOptions = retrieveSelectedOptions(formData);
   handleSearch(event, selectedOptions, data, objPropsKeys, templateCard);

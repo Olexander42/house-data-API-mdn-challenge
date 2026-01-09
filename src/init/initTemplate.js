@@ -8,10 +8,8 @@ import { properify } from "../common/utils.js";
  */
 export default function populateCardTemplate(objPropsKeys, mainProp = objPropsKeys[0]) {
   const template = /** @type {HTMLTemplateElement} */ (document.querySelector("#output template"));
-  const article = /** @type {HTMLElement} */ (document.importNode(
-    template.content.firstElementChild,
-    true
-  ))
+  const articleTemplate =  /** @type {HTMLElement} */ (template.content.firstElementChild);
+  const article = /** @type {HTMLElement} */ (document.importNode(articleTemplate, true));
   
   const propsList = /** @type {HTMLUListElement} */ (article.querySelector('ul'));
 
