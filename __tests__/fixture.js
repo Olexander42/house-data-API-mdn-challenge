@@ -1,4 +1,4 @@
-import { properify } from "../common/utils.js";
+import { properify } from "../src/common/utils.js";
 
 export const filtersNames = ["street", "bedrooms", "bathrooms"];
 
@@ -103,10 +103,3 @@ export const expectedCardDOM = `
 export function getFilterOption(nameIndex, optionIndex) {
   return expectedFiltersOptions[filtersNames[nameIndex]][optionIndex];
 }
-
-
-
-
-
-
-

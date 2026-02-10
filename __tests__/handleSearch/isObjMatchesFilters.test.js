@@ -1,4 +1,4 @@
-import { isObjMatchesFilters } from "../../handleSearch.js";
+import { isObjMatchesFilters } from "../../src/handleSearch.js";
 import { filtersNames, getFilterOption, data } from "../fixture.js";
 
 
@@ -36,5 +36,3 @@ describe("Data objects are matched correctly", () => {
     expect(isObjMatchesFilters(secondObj, SELECTED_OPTIONS_CONFIGS.matchSecond)).toBe(true);
   })
 })
-
-

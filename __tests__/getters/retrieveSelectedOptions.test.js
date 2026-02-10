@@ -1,6 +1,6 @@
 import { isSameLength } from "../utils.js";
 import { filtersNames, expectedFormDOM } from "../fixture.js";
-import { retrieveSelectedOptions } from "../../common/getters.js";
+import { retrieveSelectedOptions } from "../../src/common/getters.js";
 
 
 test("Selected options are identified correctly", () => {
@@ -10,7 +10,7 @@ test("Selected options are identified correctly", () => {
   const filter2Select = /** @type {HTMLSelectElement} */ (document.getElementById(`${filtersNames[1]}-filter`));
   const filter3Select = /** @type {HTMLSelectElement} */ (document.getElementById(`${filtersNames[2]}-filter`));
 
-  const formData = {
+  const filtersData = {
     [filtersNames[0]]: { el: filter1Select },
     [filtersNames[1]]: { el: filter2Select },
     [filtersNames[2]]: { el: filter3Select },
@@ -33,7 +33,7 @@ test("Selected options are identified correctly", () => {
   })();
 
   // @ts-ignore
-  const selectedOptions = retrieveSelectedOptions(formData);
+  const selectedOptions = retrieveSelectedOptions(filtersData);
 
   const isSelectValuesSame = () => {
     return expectedSelectedOptions.every(([select, value]) => {
@@ -44,4 +44,3 @@ test("Selected options are identified correctly", () => {
   expect(isSameLength(expectedSelectedOptions, selectedOptions)).toBe(true);
   expect(isSelectValuesSame()).toBe(true);
 })
-

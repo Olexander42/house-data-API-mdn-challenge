@@ -1,4 +1,4 @@
-import populateCardTemplate from "../../init/initTemplate.js";
+import populateCardTemplate from "../../src/init/initTemplate.js";
 import { expectedUniquePropsKeys as propsKeys, expectedCardTemplateDOM } from "../fixture.js";
 import { isNodesSame } from "../utils.js";
 
