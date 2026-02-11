@@ -1,0 +1,15 @@
+{
+  "type": "module",
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "jsdom": "^27.4.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.16"
+  },
+  "scripts": {
+    "test": "vitest",
+    "check": "tsc -p tsconfig.json",
+    "check:test": "tsc -p tsconfig.test.json",
+    "check:all": "npm run check && npm run check:test"
+  }
+}
