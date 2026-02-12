@@ -1,17 +1,13 @@
-/**
- * @example 
- * properify("proper_name") | properify("proper-name")  
- * // returns "Proper name"
- */
-export const properify = (str: string): string => {
-  if (!str[0]) return str;
+type NonEmptyString<T> = T extends "" ? never : T;
 
-  const capitalizedStr = str.replace(str[0], str[0].toUpperCase()) 
+/** Capitalize the first letter and replace "_" and "-" with " ". */
+export const properify = <T extends string>(str: NonEmptyString<T>): string => {
+  const trimmedStr = str.trim();
+  if (!trimmedStr[0]) return trimmedStr; // handle empty string
+
+  const capitalizedStr = trimmedStr.replace(trimmedStr[0], trimmedStr[0].toUpperCase()) 
   const properStr = capitalizedStr.replace("_", " ").replace("-", " ");
 
   return properStr;
 }
-
-
-
 
