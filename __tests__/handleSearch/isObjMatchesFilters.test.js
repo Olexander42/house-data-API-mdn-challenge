@@ -4,23 +4,21 @@ import { filtersNames, getFilterOption, data } from "../fixture.js";
 
 describe("Data objects are matched correctly", () => {
   const SELECTED_OPTIONS_CONFIGS = {
-    noFilters: [
-      [filtersNames[0], ""], 
-      [filtersNames[1], ""],
-      [filtersNames[2], ""],
-    ],
+    noFilters: {
+      [filtersNames[0]]: "", 
+      [filtersNames[1]]: "",
+      [filtersNames[2]]: ""
+    },
 
-    matchSecond: [
-      [filtersNames[0], getFilterOption(0, 1)],
-      [filtersNames[1], getFilterOption(1, 1)],
-      [filtersNames[2], getFilterOption(2, 1)],
-    ],
+    matchSecond: {
+      [filtersNames[0]]: getFilterOption(0, 1),
+      [filtersNames[1]]: getFilterOption(1, 1),
+      [filtersNames[2]]: getFilterOption(2, 1),
+    },
   }
 
   const firstObj = data[0];
   const secondObj = data[1];
-
-  debugger;
 
   test("Matches if no filters are applied", () => {
     data.forEach((obj) => {
