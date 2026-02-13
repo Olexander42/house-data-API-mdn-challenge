@@ -1,12 +1,18 @@
-import { properify } from "../src/common/utils.js";
+import { properify } from "../src/common/utils.ts";
 
-export const filtersNames = ["street", "bedrooms", "bathrooms"];
+import type { APIResponse } from "../src/common/types.ts";
+import type { AllowedIndexes } from "./types.ts";
+
+
+type FiltersNamesIndexes = AllowedIndexes<typeof filtersNames>;
+
+export const filtersNames = ["street", "bedrooms", "bathrooms"] as const;
 
 export const expectedFiltersOptions = {
   [filtersNames[0]]: ["Maple Avenue", "Tavistock Road"],
   [filtersNames[1]]: ["3", "4"],
   [filtersNames[2]]: ["1", "2"],
-}
+} as const;
 
 export const expectedUniquePropsKeys = [
   "price",
@@ -15,10 +21,9 @@ export const expectedUniquePropsKeys = [
   filtersNames[1],
   filtersNames[2],
   "room_sizes",
-  ,
-]
+] as const
 
-export const data = [
+export const data: APIResponse  = [
   {
     "price": 360000,
     [filtersNames[0]]: getFilterOption(0, 0),
@@ -42,7 +47,7 @@ export const data = [
       "bedroom2": 12,
     },
   }
-]
+] as const
 
 export const initialFormDOM = `
   <select id="${filtersNames[0]}-filter" name="${filtersNames[0]}-filter">
@@ -54,7 +59,7 @@ export const initialFormDOM = `
   <select id="${filtersNames[2]}-filter" name="${filtersNames[2]}-filter">
     <option value="">All options</option>
   </select>
-`
+` as const
 
 export const expectedFormDOM =  `
   <select id="${filtersNames[0]}-filter" name="${filtersNames[0]}-filter">
@@ -72,7 +77,7 @@ export const expectedFormDOM =  `
     <option value="${getFilterOption(2, 0)}">${getFilterOption(2, 0)}</option>
     <option value="${getFilterOption(2, 1)}">${getFilterOption(2, 1)}</option>
   </select>
-`
+` as const
 
 const propsKeys = expectedUniquePropsKeys;
 
@@ -85,7 +90,7 @@ export const expectedCardTemplateDOM = `
     <li data-label="${properify(propsKeys[4])}"></li>
     <li data-label="${properify(propsKeys[5])}"></li>
   </ul>
-`
+` as const
 
 export const obj = data[0];
 
@@ -100,6 +105,6 @@ export const expectedCardDOM = `
   </ul>
 `
 
-export function getFilterOption(nameIndex, optionIndex) {
+export function getFilterOption(nameIndex: FiltersNamesIndexes, optionIndex: 0 | 1): string {
   return expectedFiltersOptions[filtersNames[nameIndex]][optionIndex];
 }

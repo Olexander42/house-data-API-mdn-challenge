@@ -1,4 +1,4 @@
-import { isArrsMatch, isNodesSame, isSameLength, toNormalizedHTML } from "./utils.js"
+import { isArrsMatch, isNodesSame, isSameLength, toNormalizedHTML } from "./utils.ts"
 
 
 test("isSameLength works correctly", () => {
@@ -50,6 +50,7 @@ describe("The DOM tests work correctly", () => {
     expect(isNodesSame(div1, div3)).toBe(false);
   })
 })
+
 
  
 

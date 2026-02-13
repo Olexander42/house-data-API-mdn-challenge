@@ -1,20 +1,20 @@
-import { isSameLength } from "../utils.js";
-import { filtersNames, expectedFormDOM } from "../fixture.js";
-import { retrieveSelectedOptions } from "../../src/common/getters.js";
+import { isSameLength } from "../utils.ts";
+import { filtersNames, expectedFormDOM } from "../fixture.ts";
+import { retrieveSelectedOptions } from "../../src/common/getters.ts";
 
 
 test("Selected options are identified correctly", () => {
   document.body.innerHTML = expectedFormDOM;
 
-  const filter1Select = /** @type {HTMLSelectElement} */ (document.getElementById(`${filtersNames[0]}-filter`));
-  const filter2Select = /** @type {HTMLSelectElement} */ (document.getElementById(`${filtersNames[1]}-filter`));
-  const filter3Select = /** @type {HTMLSelectElement} */ (document.getElementById(`${filtersNames[2]}-filter`));
+  const filter1Select = document.getElementById(`${filtersNames[0]}-filter`) as HTMLSelectElement;
+  const filter2Select = document.getElementById(`${filtersNames[1]}-filter`) as HTMLSelectElement;
+  const filter3Select = document.getElementById(`${filtersNames[2]}-filter`) as HTMLSelectElement;
 
   const filtersData = {
-    [filtersNames[0]]: { el: filter1Select },
-    [filtersNames[1]]: { el: filter2Select },
-    [filtersNames[2]]: { el: filter3Select },
-  }
+    [filtersNames[0]]: { el: filter1Select, options: [] },
+    [filtersNames[1]]: { el: filter2Select, options: [] },
+    [filtersNames[2]]: { el: filter3Select, options: [] },
+  };
 
   const expectedSelectedOptions = (() => {
     const filter1Options = [...filter1Select.getElementsByTagName('option')];
@@ -32,15 +32,15 @@ test("Selected options are identified correctly", () => {
     ]
   })();
 
-  // @ts-ignore
   const selectedOptions = retrieveSelectedOptions(filtersData);
 
-  const isSelectValuesSame = () => {
+  function isSelectValuesSame(): boolean {
     return expectedSelectedOptions.every(([select, value]) => {
       return selectedOptions[select] === value;
     })
   }
   
   expect(isSameLength(expectedSelectedOptions, selectedOptions)).toBe(true);
+  expect(isSameLength(expectedSelectedOptions, [])).toBe(false);
   expect(isSelectValuesSame()).toBe(true);
 })

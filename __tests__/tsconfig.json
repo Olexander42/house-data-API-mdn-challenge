@@ -2,7 +2,7 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "types": ["vitest/globals"],
-    "noEmit": true
+    "noEmit": true,
     "noUncheckedIndexedAccess": false
   },
   "include": ["./**/*.ts"],
