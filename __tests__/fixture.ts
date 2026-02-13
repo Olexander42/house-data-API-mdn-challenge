@@ -1,6 +1,6 @@
 import { properify } from "../src/common/utils.js";
 
-import type { APIResponse } from "../src/common/types.js";
+import type { APIResponse, SelectedOptions } from "../src/common/types.js";
 import type { AllowedIndexes } from "./types.js";
 
 
@@ -21,7 +21,7 @@ export const expectedUniquePropsKeys = [
   filtersNames[1],
   filtersNames[2],
   "room_sizes",
-] as const
+]
 
 export const data: APIResponse  = [
   {
@@ -47,7 +47,7 @@ export const data: APIResponse  = [
       "bedroom2": 12,
     },
   }
-] as const
+] as const;
 
 export const initialFormDOM = `
   <select id="${filtersNames[0]}-filter" name="${filtersNames[0]}-filter">
@@ -79,9 +79,19 @@ export const expectedFormDOM =  `
   </select>
 ` as const
 
+export const outputSection = `  
+  <section id="output">
+      <template>
+        <article>
+          <ul></ul>
+        </article>
+      </template>
+    </section>
+  `
+
 const propsKeys = expectedUniquePropsKeys;
 
-export const expectedCardTemplateDOM = `
+const expectedCardTemplateDOM = `
   <h2 data-label="${properify(propsKeys[0])}"></h2>
   <ul>
     <li data-label="${properify(propsKeys[1])}"></li>
@@ -90,7 +100,10 @@ export const expectedCardTemplateDOM = `
     <li data-label="${properify(propsKeys[4])}"></li>
     <li data-label="${properify(propsKeys[5])}"></li>
   </ul>
-` as const
+`
+
+export const expectedCardTemplate = document.createElement('article');
+expectedCardTemplate.innerHTML = expectedCardTemplateDOM;
 
 export const obj = data[0];
 
@@ -105,6 +118,50 @@ export const expectedCardDOM = `
   </ul>
 `
 
+export const SELECTED_OPTIONS_CONFIGS: Record<"noFilters" | "matchSecond", SelectedOptions> = {
+  noFilters: {
+    [filtersNames[0]]: "", 
+    [filtersNames[1]]: "",
+    [filtersNames[2]]: ""
+  },
+
+  matchSecond: {
+    [filtersNames[0]]: getFilterOption(0, 1),
+    [filtersNames[1]]: getFilterOption(1, 1),
+    [filtersNames[2]]: getFilterOption(2, 1),
+  },
+};
+
 export function getFilterOption(nameIndex: FiltersNamesIndexes, optionIndex: 0 | 1): string {
   return expectedFiltersOptions[filtersNames[nameIndex]][optionIndex];
 }
+
+
+export const card1 = document.createElement('article');
+export const card2 = document.createElement('article');
+
+card1.innerHTML = `  
+  <h2 data-label="Price">360000</h2>
+    <ul>
+      <li data-label="Street">Maple Avenue</li>
+      <li data-label="House number">1</li>
+      <li data-label="Bedrooms">3</li>
+      <li data-label="Bathrooms">1</li>
+      <li data-label="Room sizes">[object Object]</li>
+    </ul>
+`
+
+card2.innerHTML = `  
+  <h2 data-label="Price">480000</h2>
+    <ul>
+      <li data-label="Street">Tavistock Road</li>
+      <li data-label="House number">12</li>
+      <li data-label="Bedrooms">4</li>
+      <li data-label="Bathrooms">2</li>
+      <li data-label="Room sizes">[object Object]</li>
+    </ul>
+`
+
+
+
+

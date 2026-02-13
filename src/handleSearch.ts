@@ -22,14 +22,19 @@ export default function handleSearch(
 
   searchResult = data.filter((obj) => isObjMatchesFilters(obj, selectedOptions));
 
-  output = output ?? document.getElementById("output");
+  const output = document.getElementById("output");
   if (!output) throw new Error("Failed to get '#output' element");
-
-  populateCard(searchResult[0], objPropsKeys, cardTemplate);
 
   const resultCount = document.getElementById("result-count");
   if (!resultCount) throw new Error("Failed to get '#result-count' element");
   resultCount.textContent = `Results returned: ${searchResult.length}`;
+  
+  searchResult.forEach((result) => {    
+    const card = populateCard(result, objPropsKeys, cardTemplate);    
+    output.append(card);
+  })
+
+  console.log(output.innerHTML);
 }
 
 function isObjMatchesFilters(obj: DataUnit, selectedOptions: SelectedOptions): boolean {
@@ -47,14 +52,16 @@ function isObjMatchesFilters(obj: DataUnit, selectedOptions: SelectedOptions): b
 } 
 
 function populateCard(obj: DataUnit, objPropsKeys: string[], cardTemplate: HTMLElement) {
-  const card = cardTemplate.cloneNode(true);
-
+  const card = cardTemplate.cloneNode(true) as HTMLElement;
+  
   objPropsKeys.forEach((objPropKey) => {
-    const optionEl = card.querySelector(`[data-label="${properify(objPropKey)}"]`);
-    const optionVal = obj[objPropKey];
+    const selector = `[data-label="${properify(objPropKey)}"]`;    
+    const optionEl = card.querySelector(selector);
+    if (!optionEl) throw new Error(`${selector} query yielded no result. 'optionEl' is 'null'`);
+    const optionVal = String(obj[objPropKey]);
     optionEl.textContent = optionVal;
   })
-
+  
   return card;
 }
 
