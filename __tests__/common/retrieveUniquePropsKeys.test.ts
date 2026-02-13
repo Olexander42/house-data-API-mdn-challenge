@@ -1,6 +1,6 @@
-import { isArrsMatch } from "../utils.ts";
-import { data, expectedUniquePropsKeys } from "../fixture.ts";
-import { retrieveUniquePropsKeys } from "../../src/common/getters.ts";
+import { isArrsMatch } from "../utils.js";
+import { data, expectedUniquePropsKeys } from "../fixture.js";
+import { retrieveUniquePropsKeys } from "../../src/common/getters.js";
 
 test ("Unique Object's Properties from Data are retrieved correctly", () => {
   expect(isArrsMatch(expectedUniquePropsKeys, retrieveUniquePropsKeys(data))).toBe(true);

@@ -1,4 +1,4 @@
-import { properify } from "../common/utils.ts";
+import { properify } from "../common/utils.js";
 
 
 export default function populateCardTemplate(

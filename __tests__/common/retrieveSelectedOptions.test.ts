@@ -1,6 +1,6 @@
-import { isSameLength } from "../utils.ts";
-import { filtersNames, expectedFormDOM } from "../fixture.ts";
-import { retrieveSelectedOptions } from "../../src/common/getters.ts";
+import { isSameLength } from "../utils.js";
+import { filtersNames, expectedFormDOM } from "../fixture.js";
+import { retrieveSelectedOptions } from "../../src/common/getters.js";
 
 
 test("Selected options are identified correctly", () => {

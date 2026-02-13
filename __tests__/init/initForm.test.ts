@@ -1,6 +1,6 @@
-import { isSameLength, isArrsMatch, isNodesSame } from "../utils.ts";
-import { filtersNames, initialFormDOM, expectedFiltersOptions, data, expectedFormDOM} from "../fixture.ts";
-import { formData, initFiltersProps, initFiltersOptions, populateFiltersOptions } from "../../src/init/initForm.ts";
+import { isSameLength, isArrsMatch, isNodesSame } from "../utils.js";
+import { filtersNames, initialFormDOM, expectedFiltersOptions, data, expectedFormDOM} from "../fixture.js";
+import { formData, initFiltersProps, initFiltersOptions, populateFiltersOptions } from "../../src/init/initForm.js";
 
 
 document.body.innerHTML = initialFormDOM;

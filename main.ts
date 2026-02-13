@@ -1,9 +1,9 @@
-import { formData, initForm } from "./src/init/initForm.ts";
-import { retrieveSelectedOptions, retrieveUniquePropsKeys } from "./src/common/getters.ts";
-import populateCardTemplate from "./src/init/initTemplate.ts";
-import handleSearch from "./src/handleSearch.ts";
+import { formData, initForm } from "./src/init/initForm.js";
+import { retrieveSelectedOptions, retrieveUniquePropsKeys } from "./src/common/getters.js";
+import populateCardTemplate from "./src/init/initTemplate.js";
+import handleSearch from "./src/handleSearch.js";
 
-import type { APIResponse } from "./src/common/types.ts";
+import type { APIResponse } from "./src/common/types.js";
 
 const url = 'https://mdn.github.io/shared-assets/misc/houses.json'; 
 

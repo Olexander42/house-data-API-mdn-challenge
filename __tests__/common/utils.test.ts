@@ -1,4 +1,4 @@
-import { properify } from "../../src/common/utils.ts"
+import { properify } from "../../src/common/utils.js"
 
 test("`properify` works correctly", () => {
   expect(properify("proper_name")).toBe("Proper name");

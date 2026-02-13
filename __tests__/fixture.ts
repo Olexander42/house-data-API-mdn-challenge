@@ -1,7 +1,7 @@
-import { properify } from "../src/common/utils.ts";
+import { properify } from "../src/common/utils.js";
 
-import type { APIResponse } from "../src/common/types.ts";
-import type { AllowedIndexes } from "./types.ts";
+import type { APIResponse } from "../src/common/types.js";
+import type { AllowedIndexes } from "./types.js";
 
 
 type FiltersNamesIndexes = AllowedIndexes<typeof filtersNames>;

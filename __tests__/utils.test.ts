@@ -1,4 +1,4 @@
-import { isArrsMatch, isNodesSame, isSameLength, toNormalizedHTML } from "./utils.ts"
+import { isArrsMatch, isNodesSame, isSameLength, toNormalizedHTML } from "./utils.js"
 
 
 test("isSameLength works correctly", () => {

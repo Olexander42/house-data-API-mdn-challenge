@@ -1,6 +1,6 @@
-import populateCardTemplate from "../../src/init/initTemplate.ts";
-import { expectedUniquePropsKeys as propsKeys, expectedCardTemplateDOM } from "../fixture.ts";
-import { isNodesSame } from "../utils.ts";
+import populateCardTemplate from "../../src/init/initTemplate.js";
+import { expectedUniquePropsKeys as propsKeys, expectedCardTemplateDOM } from "../fixture.js";
+import { isNodesSame } from "../utils.js";
 
 
 test("Card template is generated correctly", () => {

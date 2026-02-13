@@ -1,6 +1,6 @@
-import { properify } from "./common/utils.ts";
+import { properify } from "./common/utils.js";
 
-import type { APIResponse, SelectedOptions, DataUnit } from "./common/types.ts";
+import type { APIResponse, SelectedOptions, DataUnit } from "./common/types.js";
 
 
 let output: HTMLElement;
