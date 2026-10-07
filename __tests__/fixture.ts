@@ -91,6 +91,8 @@ export const outputSection = `
 
 const propsKeys = expectedUniquePropsKeys;
 
+export const expectedCardTemplate = document.createElement('article');
+
 const expectedCardTemplateDOM = `
   <h2 data-label="${properify(propsKeys[0])}"></h2>
   <ul>
@@ -102,21 +104,24 @@ const expectedCardTemplateDOM = `
   </ul>
 `
 
-export const expectedCardTemplate = document.createElement('article');
 expectedCardTemplate.innerHTML = expectedCardTemplateDOM;
 
 export const obj = data[0];
 
-export const expectedCardDOM = `
-  <h2 data-label="${properify(propsKeys[0])}">${obj[propsKeys[0]]}</h2>
-  <ul>
-    <li data-label="${properify(propsKeys[1])}">${obj[propsKeys[1]]}</li>
-    <li data-label="${properify(propsKeys[2])}">${obj[propsKeys[2]]}</li>
-    <li data-label="${properify(propsKeys[3])}">${obj[propsKeys[3]]}</li>
-    <li data-label="${properify(propsKeys[4])}">${obj[propsKeys[4]]}</li>
-    <li data-label="${properify(propsKeys[5])}">${obj[propsKeys[5]]}</li>
-  </ul>
+export const expectedCard = document.createElement('article');
+
+const expectedCardDOM = `
+<h2 data-label="${properify(propsKeys[0])}">${obj[propsKeys[0]]}</h2>
+<ul>
+  <li data-label="${properify(propsKeys[1])}">${obj[propsKeys[1]]}</li>
+  <li data-label="${properify(propsKeys[2])}">${obj[propsKeys[2]]}</li>
+  <li data-label="${properify(propsKeys[3])}">${obj[propsKeys[3]]}</li>
+  <li data-label="${properify(propsKeys[4])}">${obj[propsKeys[4]]}</li>
+  <li data-label="${properify(propsKeys[5])}">${obj[propsKeys[5]]}</li>
+</ul>
 `
+
+expectedCard.innerHTML = expectedCardDOM;
 
 export const SELECTED_OPTIONS_CONFIGS: Record<"noFilters" | "matchSecond", SelectedOptions> = {
   noFilters: {

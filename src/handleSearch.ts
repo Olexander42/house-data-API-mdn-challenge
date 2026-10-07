@@ -3,9 +3,6 @@ import { properify } from "./common/utils.js";
 import type { APIResponse, SelectedOptions, DataUnit } from "./common/types.js";
 
 
-let output: HTMLElement;
-let searchResult: APIResponse;
-
 type HandleSearchInput = {
   event: SubmitEvent,
   selectedOptions: SelectedOptions,
@@ -20,7 +17,7 @@ export default function handleSearch(
 ): void {
   event.preventDefault();
 
-  searchResult = data.filter((obj) => isObjMatchesFilters(obj, selectedOptions));
+  const searchResult = data.filter((obj) => isObjMatchesFilters(obj, selectedOptions));
 
   const output = document.getElementById("output");
   if (!output) throw new Error("Failed to get '#output' element");
@@ -33,8 +30,6 @@ export default function handleSearch(
     const card = populateCard(result, objPropsKeys, cardTemplate);    
     output.append(card);
   })
-
-  console.log(output.innerHTML);
 }
 
 function isObjMatchesFilters(obj: DataUnit, selectedOptions: SelectedOptions): boolean {

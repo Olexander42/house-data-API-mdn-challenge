@@ -7,9 +7,11 @@
     "vitest": "^4.0.16"
   },
   "scripts": {
-    "test": "vitest",
+    "test": "cd __tests__ && npx vitest run",
+    "test:watch": "cd __tests__ && npx vitest",
+    "test:play": "cd __tests__ && npx vitest playground.test.ts run",
     "check": "tsc -p tsconfig.json",
-    "check:test": "tsc -p tsconfig.test.json",
+    "check:test": "tsc -p ./__tests__/tsconfig.json",
     "check:all": "npm run check && npm run check:test"
   }
 }

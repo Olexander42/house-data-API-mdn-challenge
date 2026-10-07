@@ -1,4 +1,4 @@
-import type { APIResponse, FiltersData } from "../common/types.js";
+import type { APIResponse, FiltersData } from "../common/types.ts";
 
 
 export const formData: FiltersData = {};

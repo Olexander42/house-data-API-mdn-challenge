@@ -12,7 +12,7 @@ export function isArrsMatch(
   if (arr1.length !== arr2.length) {
     return false;
   } 
-
+  
   return arr1.every((val, i) => val === arr2[i]);
 }
 

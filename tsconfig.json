@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "moduleResolution": "nodenext",
 
     "useDefineForClassFields": true,
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
@@ -10,16 +10,13 @@
     "forceConsistentCasingInFileNames": true,
     "outDir": "./built",
 
-    "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
     //"noEmitOnError": true,
-    "noEmit": true,
-    "sourceMap": true,
+    //"noEmit": true,
+    //"sourceMap": true,
 
     "strict": true,
-    "allowJs": true, // temp
-    "checkJs": false, // temp
     "exactOptionalPropertyTypes": true,
     "noUncheckedIndexedAccess": true,
     "noPropertyAccessFromIndexSignature": true,

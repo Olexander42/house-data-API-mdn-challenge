@@ -18,8 +18,12 @@ try {
 
 initForm(data);
 
+// The next values are declared outside 'handleSearch'
+// because they need to be declared only once.
 const objPropsKeys = retrieveUniquePropsKeys(data);
 const cardTemplate = populateCardTemplate(objPropsKeys);
+//console.log(cardTemplate.innerHTML);
+
 
 const form = document.querySelector('form')!;
 

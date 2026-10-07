@@ -18,8 +18,8 @@ function resetDOM() {
 }
 
 
-describe("Search output is rendered correctly", () => {
-  describe("No filters applied", () => {
+suite("Search output is rendered correctly", () => {
+  suite("No filters applied", () => {
     beforeAll(() => {
       resetDOM();
 
@@ -56,25 +56,20 @@ describe("Search output is rendered correctly", () => {
     })
   })
 
-  describe("Filters are applied", () => {
+  suite("Filters are applied", () => {
     beforeAll(() => {
       resetDOM();
-      console.log("DOM has been reset");
-      
+
       handleSearch({
         event: new SubmitEvent("submit"),
         data,
         selectedOptions: SELECTED_OPTIONS_CONFIGS.matchSecond,
         objPropsKeys: propsKeys,
         cardTemplate
-      })
-
-      console.log("Output inside 'beforeAll'", document.getElementById("output")?.innerHTML);
-      
+      })      
     }) 
 
     test("The search count is correct", () => {
-      console.log("Output right after 'beforeAll', inside first test", document.getElementById("output")?.innerHTML);
       const actualSearchCount = document.getElementById("result-count");
       if (!actualSearchCount) throw new Error("No '#result-count' was found");
       
@@ -89,14 +84,6 @@ describe("Search output is rendered correctly", () => {
       if (!actualSection) throw new Error("No '#output' was found");
 
       expectedSection.append(card2);
-      /*
-      console.log("expectedSection");
-      console.log(expectedSection.innerHTML);
-      console.log("__________________");
-      console.log("actualSection");
-      console.log(actualSection.innerHTML);
-      */
-      
       
       expect(isNodesSame(expectedSection, actualSection)).toBe(true);
 
