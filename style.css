@@ -53,6 +53,11 @@ select {
     border: 2px solid #cccccc;
     border-radius: 10px;
 
+    & [data-label] {
+      display: flex;
+      justify-content: space-between;
+    }
+
     *::before {
       content: attr(data-label);
     }
