@@ -4,14 +4,13 @@ import type { APIResponse, SelectedOptions } from "../src/common/types.js";
 import type { AllowedIndexes } from "./types.js";
 
 
-type FiltersNamesIndexes = AllowedIndexes<typeof filtersNames>;
-
 export const filtersNames = ["street", "bedrooms", "bathrooms"] as const;
+const filtersOptions = [["Maple Avenue", "Tavistock Road"], ["3", "4"], ["1", "2"]] as const;
 
 export const expectedFiltersOptions = {
-  [filtersNames[0]]: ["Maple Avenue", "Tavistock Road"],
-  [filtersNames[1]]: ["3", "4"],
-  [filtersNames[2]]: ["1", "2"],
+  [filtersNames[0]]: filtersOptions[0],
+  [filtersNames[1]]: filtersOptions[1],
+  [filtersNames[2]]: filtersOptions[2],
 } as const;
 
 export const expectedUniquePropsKeys = [
@@ -137,7 +136,11 @@ export const SELECTED_OPTIONS_CONFIGS: Record<"noFilters" | "matchSecond", Selec
   },
 };
 
-export function getFilterOption(nameIndex: FiltersNamesIndexes, optionIndex: 0 | 1): string {
+
+type FiltersNamesIndexes = AllowedIndexes<typeof filtersNames>;
+type FiltersOptionsIndexes = AllowedIndexes<typeof filtersOptions[0]>;
+
+export function getFilterOption(nameIndex: FiltersNamesIndexes, optionIndex: FiltersOptionsIndexes): string {
   return expectedFiltersOptions[filtersNames[nameIndex]][optionIndex];
 }
 

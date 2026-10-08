@@ -20,6 +20,7 @@ function initFiltersProps(selectElements: HTMLSelectElement[]): void {
   }); 
 }
 
+/** Go through API response and collect filters options'  unique values */
 function initFiltersOptions(data: APIResponse): void {
   for (const [filterName, filterData] of Object.entries(formData)) {
     filterData.options = ((filterName) => {

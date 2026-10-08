@@ -16,7 +16,6 @@ test("Selected options are identified correctly", () => {
     [filtersNames[2]]: { el: filter3Select, options: [] },
   };
 
-  const expectedSelectedOptions = (() => {
     const filter1Options = [...filter1Select.getElementsByTagName('option')];
     const filter2Options = [...filter2Select.getElementsByTagName('option')];
     const filter3Options = [...filter3Select.getElementsByTagName('option')];
@@ -25,22 +24,21 @@ test("Selected options are identified correctly", () => {
     filter2Options[1].selected = true;
     filter3Options[2].selected = true;
 
-    return [
+    const expectedSelectedOptions = [
       [filtersNames[0], filter1Select.value],
       [filtersNames[1], filter2Select.value],
       [filtersNames[2], filter3Select.value],
     ]
-  })();
 
-  const selectedOptions = retrieveSelectedOptions(filtersData);
-
-  function isSelectValuesSame(): boolean {
-    return expectedSelectedOptions.every(([select, value]) => {
-      return selectedOptions[select] === value;
-    })
-  }
+  const actualSelectedOptions = retrieveSelectedOptions(filtersData);
   
-  expect(isSameLength(expectedSelectedOptions, selectedOptions)).toBe(true);
+  expect(isSameLength(expectedSelectedOptions, actualSelectedOptions)).toBe(true);
   expect(isSameLength(expectedSelectedOptions, [])).toBe(false);
-  expect(isSelectValuesSame()).toBe(true);
+  expect(
+    (function isSelectValuesSame(): boolean {
+      return expectedSelectedOptions.every(([select, value]) => {
+        return actualSelectedOptions[select] === value;
+      })
+    })()
+  ).toBe(true);
 })

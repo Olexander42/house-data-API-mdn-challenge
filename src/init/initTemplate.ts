@@ -15,7 +15,7 @@ export default function populateCardTemplate(
     throw new Error(`${templateSelector} failed to query anything`);
   }
 
-  const articleTemplate =  template.content.firstElementChild as HTMLElement;
+  const articleTemplate = template.content.firstElementChild as HTMLElement;
   if (!articleTemplate) {
     throw new Error("The template has no children of type 'Element'")
   }

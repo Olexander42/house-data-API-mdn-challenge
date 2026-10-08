@@ -3,8 +3,6 @@ import { data, SELECTED_OPTIONS_CONFIGS } from "../fixture.js";
 
 
 describe("Data objects are matched correctly", () => {
-
-
   const firstObj = data[0];
   const secondObj = data[1];
 

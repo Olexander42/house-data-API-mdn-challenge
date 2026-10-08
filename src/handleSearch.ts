@@ -39,7 +39,7 @@ function isObjMatchesFilters(obj: DataUnit, selectedOptions: SelectedOptions): b
   for (const [filterName, selectedOption] of relevantFilters) {
     const objPropValue = String(obj[filterName]);
     if (selectedOption !== objPropValue) {
-      return false;
+      return false; 
     }
   }
 
@@ -51,10 +51,10 @@ function populateCard(obj: DataUnit, objPropsKeys: string[], cardTemplate: HTMLE
   
   objPropsKeys.forEach((objPropKey) => {
     const selector = `[data-label="${properify(objPropKey)}"]`;    
-    const optionEl = card.querySelector(selector);
-    if (!optionEl) throw new Error(`${selector} query yielded no result. 'optionEl' is 'null'`);
-    const optionVal = String(obj[objPropKey]);
-    optionEl.textContent = optionVal;
+    const propEl = card.querySelector(selector);
+    if (!propEl) throw new Error(`${selector} query yielded no result. 'propEl' is 'null'`);
+    const propVal = String(obj[objPropKey]);
+    propEl.textContent = propVal;
   })
   
   return card;

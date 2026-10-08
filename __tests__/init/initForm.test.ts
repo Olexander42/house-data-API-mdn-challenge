@@ -8,8 +8,6 @@ const selectElements = [...document.querySelectorAll('select')];
 initFiltersProps(selectElements);
 
 describe("formData is initialized correctly", () => {
-  const selectElements = [...document.querySelectorAll('select')];
-
   const filtersDataNames: readonly string[] = Object.keys(formData);
   const filtersDataSelectEls = Object.values(formData).map(({ el }) => el)
 

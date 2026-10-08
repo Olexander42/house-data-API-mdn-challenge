@@ -14,7 +14,6 @@ test("isArrsMatch works correctly", () => {
 })
 
 
-
 describe("The DOM tests work correctly", () => {
   const prettyHTML = `
     <select id="street-filter" name="street-filter">

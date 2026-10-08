@@ -1,9 +1,10 @@
 import "@testing-library/jest-dom"
 
+import handleSearch from "../../src/handleSearch.js"
+
 import { data, SELECTED_OPTIONS_CONFIGS, expectedUniquePropsKeys as propsKeys, expectedCardTemplate as cardTemplate, card1, card2 } from "../fixture.js";
 import { isNodesSame } from "../utils.js";
 
-import handleSearch from "../../src/handleSearch.js"
 
 function resetDOM() {
   document.body.innerHTML = "";
@@ -16,7 +17,6 @@ function resetDOM() {
 
   document.body.append(searchCount, actualSection);  
 }
-
 
 suite("Search output is rendered correctly", () => {
   suite("No filters applied", () => {
@@ -37,7 +37,6 @@ suite("Search output is rendered correctly", () => {
       if (!actualSearchCount) throw new Error("No '#result-count' was found");
      
       expect(actualSearchCount).toHaveTextContent(`Results returned: ${data.length}`);
-      expect(actualSearchCount).not.toHaveTextContent(`Results returned: ${data.length + 1}`);
     })
     
     
@@ -74,7 +73,6 @@ suite("Search output is rendered correctly", () => {
       if (!actualSearchCount) throw new Error("No '#result-count' was found");
       
       expect(actualSearchCount).toHaveTextContent(`Results returned: 1`);
-      expect(actualSearchCount).not.toHaveTextContent(`Results returned: 2}`);
     })
 
     test("Cards are rendered correctly", () => {
@@ -88,7 +86,7 @@ suite("Search output is rendered correctly", () => {
       expect(isNodesSame(expectedSection, actualSection)).toBe(true);
 
       expectedSection.innerHTML = "";
-      expectedSection.append(card2, card1);      
+      expectedSection.append(card1);      
       expect(isNodesSame(expectedSection, actualSection)).toBe(false);
     })
   })
