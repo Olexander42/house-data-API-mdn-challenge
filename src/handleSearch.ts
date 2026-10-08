@@ -8,27 +8,25 @@ type HandleSearchInput = {
   selectedOptions: SelectedOptions,
   data: APIResponse,
   objPropsKeys: string[],
-  cardTemplate: HTMLElement
+  cardTemplate: HTMLElement,
+  resultCountEl: HTMLParagraphElement,
+  outputEl: HTMLElement,
 }
 
 /** Renders a search result. */
 export default function handleSearch(
-  { event, selectedOptions, data, objPropsKeys, cardTemplate }: HandleSearchInput
+  { event, selectedOptions, data, objPropsKeys, cardTemplate, outputEl, resultCountEl }: HandleSearchInput
 ): void {
   event.preventDefault();
 
   const searchResult = data.filter((obj) => isObjMatchesFilters(obj, selectedOptions));
 
-  const output = document.getElementById("output");
-  if (!output) throw new Error("Failed to get '#output' element");
-
-  const resultCount = document.getElementById("result-count");
-  if (!resultCount) throw new Error("Failed to get '#result-count' element");
-  resultCount.textContent = `Results returned: ${searchResult.length}`;
+  resultCountEl.textContent = `Results returned: ${searchResult.length}`;
   
+  outputEl.innerHTML = "";
   searchResult.forEach((result) => {    
     const card = populateCard(result, objPropsKeys, cardTemplate);    
-    output.append(card);
+    outputEl.append(card);
   })
 }
 

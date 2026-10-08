@@ -7,7 +7,7 @@ import type { APIResponse } from "./src/common/types.js";
 
 const url = 'https://mdn.github.io/shared-assets/misc/houses.json'; 
 
-export let data: APIResponse;
+export let data: APIResponse; // ! export????
 
 try {
   const response = await fetch(url);
@@ -18,14 +18,14 @@ try {
 
 initForm(data);
 
-// The next values are declared outside 'handleSearch'
-// because they need to be declared only once.
+/** The next values are declared outside 'handleSearch'
+because they need to be declared only once. */
 const objPropsKeys = retrieveUniquePropsKeys(data);
 const cardTemplate = populateCardTemplate(objPropsKeys);
-//console.log(cardTemplate.innerHTML);
-
 
 const form = document.querySelector('form')!;
+const resultCountEl = document.getElementById("result-count")! as HTMLParagraphElement;
+const outputEl = document.getElementById("output")!;
 
 form.addEventListener('submit', (event) => {
   const selectedOptions = retrieveSelectedOptions(formData);
@@ -35,6 +35,8 @@ form.addEventListener('submit', (event) => {
     selectedOptions,
     data,
     objPropsKeys,
-    cardTemplate
+    cardTemplate,
+    resultCountEl,
+    outputEl
   })
 })
