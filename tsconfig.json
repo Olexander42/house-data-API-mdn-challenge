@@ -7,12 +7,13 @@
     "useDefineForClassFields": true,
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
+    "rootDir": ".",
     "forceConsistentCasingInFileNames": true,
     "outDir": "./built",
 
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
-    //"noEmitOnError": true,
+    "noEmitOnError": true,
     //"noEmit": true,
     //"sourceMap": true,
 
@@ -31,6 +32,4 @@
   "include": ["./**/*.ts"],
   "exclude": ["./**/__tests__"]
 }
-
-
-                                                                                                                       
+                                                                                                                    
