@@ -80,10 +80,16 @@ export const expectedFormDOM =  `
 
 export const outputSection = `  
   <section id="output">
-      <template>
+      <template id="card-template">
         <article>
           <ul></ul>
         </article>
+      </template>
+      <template id="expandable">
+        <details>
+          <summary>Click here to expand</summary>
+          <ul></ul>
+        </details>
       </template>
     </section>
   `
@@ -93,34 +99,25 @@ const propsKeys = expectedUniquePropsKeys;
 export const expectedCardTemplate = document.createElement('article');
 
 const expectedCardTemplateDOM = `
-  <h2 data-label="${properify(propsKeys[0])}"></h2>
-  <ul>
-    <li data-label="${properify(propsKeys[1])}"></li>
-    <li data-label="${properify(propsKeys[2])}"></li>
-    <li data-label="${properify(propsKeys[3])}"></li>
-    <li data-label="${properify(propsKeys[4])}"></li>
-    <li data-label="${properify(propsKeys[5])}"></li>
-  </ul>
+    <h2 data-label="${properify(propsKeys[0])}"></h2>
+    <ul>
+      <li data-label="${properify(propsKeys[1])}"></li>
+      <li data-label="${properify(propsKeys[2])}"></li>
+      <li data-label="${properify(propsKeys[3])}"></li>
+      <li data-label="${properify(propsKeys[4])}"></li>
+      <li data-label="${properify(propsKeys[5])}"></li>
+    </ul>
+    <template id="expandable">
+      <details>
+        <summary>Click here to expand</summary>
+        <ul></ul>
+      </details>
+    </template>
 `
 
 expectedCardTemplate.innerHTML = expectedCardTemplateDOM;
 
 export const obj = data[0];
-
-export const expectedCard = document.createElement('article');
-
-const expectedCardDOM = `
-<h2 data-label="${properify(propsKeys[0])}">${obj[propsKeys[0]]}</h2>
-<ul>
-  <li data-label="${properify(propsKeys[1])}">${obj[propsKeys[1]]}</li>
-  <li data-label="${properify(propsKeys[2])}">${obj[propsKeys[2]]}</li>
-  <li data-label="${properify(propsKeys[3])}">${obj[propsKeys[3]]}</li>
-  <li data-label="${properify(propsKeys[4])}">${obj[propsKeys[4]]}</li>
-  <li data-label="${properify(propsKeys[5])}">${obj[propsKeys[5]]}</li>
-</ul>
-`
-
-expectedCard.innerHTML = expectedCardDOM;
 
 export const SELECTED_OPTIONS_CONFIGS: Record<"noFilters" | "matchSecond", SelectedOptions> = {
   noFilters: {
@@ -145,28 +142,44 @@ export function getFilterOption(nameIndex: FiltersNamesIndexes, optionIndex: Fil
 }
 
 
-export const card1 = document.createElement('article');
-export const card2 = document.createElement('article');
+export const expectedCard1 = document.createElement('article');
+export const expectedCard2 = document.createElement('article');
 
-card1.innerHTML = `  
+expectedCard1.innerHTML = ` 
   <h2 data-label="Price">360000</h2>
-    <ul>
-      <li data-label="Street">Maple Avenue</li>
-      <li data-label="House number">1</li>
-      <li data-label="Bedrooms">3</li>
-      <li data-label="Bathrooms">1</li>
-      <li data-label="Room sizes">[object Object]</li>
-    </ul>
+  <ul>
+    <li data-label="Street">Maple Avenue</li>
+    <li data-label="House number">1</li>
+    <li data-label="Bedrooms">3</li>
+    <li data-label="Bathrooms">1</li>
+    <li data-label="Room sizes">
+      <details>
+        <summary>Click to see more</summary>
+        <ul>
+          <li>Bedroom 1: 12m</li>
+          <li>Bedroom 2: 15m</li>
+        </ul>
+      </details>
+    </li>
+  </ul>
 `
 
-card2.innerHTML = `  
+expectedCard2.innerHTML = `  
   <h2 data-label="Price">480000</h2>
     <ul>
       <li data-label="Street">Tavistock Road</li>
       <li data-label="House number">12</li>
       <li data-label="Bedrooms">4</li>
       <li data-label="Bathrooms">2</li>
-      <li data-label="Room sizes">[object Object]</li>
+      <li data-label="Room sizes">
+        <details>
+          <summary>Click to see more</summary>
+          <ul>
+            <li>Bedroom 1: 14m</li>
+            <li>Bedroom 2: 12m</li>
+          </ul>
+        </details>
+      </li>
     </ul>
 `
 
