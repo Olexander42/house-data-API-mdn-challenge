@@ -48,6 +48,7 @@ select {
   gap: 50px;
 
   & article {
+    width: clamp(200px, 25%, 300px);
     padding: 0 20px;
     background-color: #efefef;
     border: 2px solid #cccccc;
@@ -68,5 +69,6 @@ select {
     }
   }
 }
+
 
 

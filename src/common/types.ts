@@ -9,7 +9,7 @@ export type FiltersData = {
   }
 }
 
-export type SelectedOptions = { // ? Why plural?
+export type SelectedOptions = {
   [filterName: string]: string;
 }
 

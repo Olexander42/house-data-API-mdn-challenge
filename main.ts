@@ -1,13 +1,13 @@
 import { formData, initForm } from "./src/init/initForm.js";
 import { retrieveSelectedOptions, retrieveUniquePropsKeys } from "./src/common/getters.js";
-import populateCardTemplate from "./src/init/initTemplate.js";
+import initCardTemplate from "./src/init/initTemplate.js";
 import handleSearch from "./src/handleSearch.js";
 
 import type { APIResponse } from "./src/common/types.js";
 
 const url = 'https://mdn.github.io/shared-assets/misc/houses.json'; 
 
-export let data: APIResponse; // ! export????
+let data: APIResponse;
 
 try {
   const response = await fetch(url);
@@ -18,10 +18,10 @@ try {
 
 initForm(data);
 
-/** The next values are declared outside 'handleSearch'
+/* The next values are declared outside 'handleSearch'
 because they need to be declared only once. */
 const objPropsKeys = retrieveUniquePropsKeys(data);
-const cardTemplate = populateCardTemplate(objPropsKeys);
+const cardTemplate = initCardTemplate(objPropsKeys, "price");
 
 const form = document.querySelector('form')!;
 const resultCountEl = document.getElementById("result-count")! as HTMLParagraphElement;
