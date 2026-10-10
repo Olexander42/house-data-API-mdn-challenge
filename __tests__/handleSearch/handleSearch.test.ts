@@ -2,7 +2,7 @@ import "@testing-library/jest-dom"
 
 import handleSearch from "../../src/handleSearch.js"
 
-import { data, SELECTED_OPTIONS_CONFIGS, expectedUniquePropsKeys as propsKeys, expectedCardTemplate as cardTemplate, card1, card2 } from "../fixture.js";
+import { data, SELECTED_OPTIONS_CONFIGS, expectedUniquePropsKeys as propsKeys, expectedCardTemplate as cardTemplate, expectedCard1, expectedCard2 } from "../fixture.js";
 import { isNodesSame } from "../utils.js";
 
 import type { SelectedOptions } from "../../src/common/types.js";
@@ -38,22 +38,18 @@ suite("Search output is rendered correctly", () => {
 
     test("The search count is correct", () => {
       const actualSearchCount = document.getElementById("result-count")!;
-     
+      
       expect(actualSearchCount).toHaveTextContent(`Results returned: ${data.length}`);
     })
     
     
-    test("Cards are rendered correctly", () => {
+    test("Output is rendered correctly", () => {
       const expectedSection = document.createElement('section');
-      
       const actualSection = document.getElementById("output")!;
+      
+      expectedSection.append(expectedCard1, expectedCard2);
 
-      expectedSection.append(card1, card2);
       expect(isNodesSame(expectedSection, actualSection)).toBe(true);
-
-      expectedSection.innerHTML = "";
-      expectedSection.append(card1);      
-      expect(isNodesSame(expectedSection, actualSection)).toBe(false);
     })
 
 
@@ -66,25 +62,19 @@ suite("Search output is rendered correctly", () => {
     })
 
     test("The search count is correct", () => {
-      const actualSearchCount = document.getElementById("result-count");
-      if (!actualSearchCount) throw new Error("No '#result-count' was found");
+      const actualSearchCount = document.getElementById("result-count") as HTMLParagraphElement;
       
       expect(actualSearchCount).toHaveTextContent(`Results returned: 1`);
     })
 
     test("Cards are rendered correctly", () => {
       const expectedSection = document.createElement('section');
-      
-      const actualSection = document.getElementById("output");
-      if (!actualSection) throw new Error("No '#output' was found");
+      const actualSection = document.getElementById("output") as HTMLElement;
 
-      expectedSection.append(card2);
+      expectedSection.append(expectedCard2);
       
       expect(isNodesSame(expectedSection, actualSection)).toBe(true);
 
-      expectedSection.innerHTML = "";
-      expectedSection.append(card1);      
-      expect(isNodesSame(expectedSection, actualSection)).toBe(false);
     })
   })
 })

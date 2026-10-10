@@ -51,8 +51,23 @@ function populateCard(obj: DataUnit, objPropsKeys: string[], cardTemplate: HTMLE
     const selector = `[data-label="${properify(objPropKey)}"]`;    
     const propEl = card.querySelector(selector);
     if (!propEl) throw new Error(`${selector} query yielded no result. 'propEl' is 'null'`);
-    const propVal = String(obj[objPropKey]);
-    propEl.textContent = propVal;
+    const propVal = obj[objPropKey];
+    if (typeof propVal !== 'object') propEl.textContent = String(propVal);
+    else {      
+      const expandableTemplate = card.querySelector("#expandable") as HTMLTemplateElement;      
+      const detailsTemplate = expandableTemplate.content.firstElementChild as HTMLElement;
+      const detailsEl = document.importNode(detailsTemplate, true);
+      const listEl = detailsEl.querySelector('ul') as HTMLUListElement;
+
+      Object.entries(propVal!).forEach(([key, val]) => {        
+        const listItemEl = document.createElement('li');
+        listItemEl.textContent = `${key}: ${val}`;
+        
+        listEl.append(listItemEl);
+      });
+      
+      propEl.append(detailsEl);
+    }
   })
   
   return card;

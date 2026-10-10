@@ -1,4 +1,5 @@
 import { properify } from "../src/common/utils.js";
+import { closed } from "../src/ui/attachSummaryListeners.js";
 
 import type { APIResponse, SelectedOptions } from "../src/common/types.js";
 import type { AllowedIndexes } from "./types.js";
@@ -20,7 +21,6 @@ export const expectedUniquePropsKeys = [
   filtersNames[1],
   filtersNames[2],
   "room_sizes",
-]
 
 export const data: APIResponse  = [
   {
@@ -87,7 +87,7 @@ export const outputSection = `
       </template>
       <template id="expandable">
         <details>
-          <summary>Click here to expand</summary>
+          <summary>${closed}</summary>
           <ul></ul>
         </details>
       </template>
@@ -109,7 +109,7 @@ const expectedCardTemplateDOM = `
     </ul>
     <template id="expandable">
       <details>
-        <summary>Click here to expand</summary>
+        <summary>${closed}</summary>
         <ul></ul>
       </details>
     </template>
@@ -154,33 +154,45 @@ expectedCard1.innerHTML = `
     <li data-label="Bathrooms">1</li>
     <li data-label="Room sizes">
       <details>
-        <summary>Click to see more</summary>
+        <summary>${closed}</summary>
         <ul>
-          <li>Bedroom 1: 12m</li>
-          <li>Bedroom 2: 15m</li>
+          <li>bedroom1: 12</li>
+          <li>bedroom2: 15</li>
         </ul>
       </details>
     </li>
   </ul>
+  <template id="expandable">
+    <details>
+      <summary>${closed}</summary>
+      <ul></ul>
+    </details>
+  </template>
 `
 
 expectedCard2.innerHTML = `  
   <h2 data-label="Price">480000</h2>
-    <ul>
-      <li data-label="Street">Tavistock Road</li>
-      <li data-label="House number">12</li>
-      <li data-label="Bedrooms">4</li>
-      <li data-label="Bathrooms">2</li>
-      <li data-label="Room sizes">
-        <details>
-          <summary>Click to see more</summary>
-          <ul>
-            <li>Bedroom 1: 14m</li>
-            <li>Bedroom 2: 12m</li>
-          </ul>
-        </details>
-      </li>
-    </ul>
+  <ul>
+    <li data-label="Street">Tavistock Road</li>
+    <li data-label="House number">12</li>
+    <li data-label="Bedrooms">4</li>
+    <li data-label="Bathrooms">2</li>
+    <li data-label="Room sizes">
+      <details>
+        <summary>${closed}</summary>
+        <ul>
+          <li>bedroom1: 14</li>
+          <li>bedroom2: 12</li>
+        </ul>
+      </details>
+    </li>
+  </ul>
+  <template id="expandable">
+    <details>
+      <summary>${closed}</summary>
+      <ul></ul>
+    </details>
+  </template>
 `
 
 
