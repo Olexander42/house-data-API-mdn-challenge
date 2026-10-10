@@ -21,6 +21,7 @@ export const expectedUniquePropsKeys = [
   filtersNames[1],
   filtersNames[2],
   "room_sizes",
+] as [string, ...string[]]
 
 export const data: APIResponse  = [
   {

@@ -12,13 +12,23 @@ export function retrieveSelectedOptions(formData: FiltersData): SelectedOptions 
   return allSelectedOptions;
 }
 
-export function retrieveUniquePropsKeys(data: APIResponse): string[] {
+export function retrieveUniquePropsKeys(data: APIResponse): [string, ...string[]] {
   const uniquePropsKeys = new Set<string>();
 
   data.forEach((dataUnit) => {
     const propertyNames = Object.keys(dataUnit);
     propertyNames.forEach((propertyName) => uniquePropsKeys.add(String(propertyName))); 
   })
-  
-  return [...uniquePropsKeys];
+
+  const result = [...uniquePropsKeys];
+
+  function isEmpty(arr: string[]): asserts arr is [string, ...string[]] {
+    if (arr.length === 0) {
+      throw new Error("No unique properties have been found in the data")
+    }
+  }
+
+  isEmpty(result);
+
+  return result;
 }

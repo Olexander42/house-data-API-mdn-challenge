@@ -1,12 +1,12 @@
 import { properify } from "../common/utils.js";
 
 
-export default function populateCardTemplate(
-  objPropsKeys: readonly string[],
-  mainProp = objPropsKeys[0]
+export default function initCardTemplate<T extends readonly[string, ...string[]]>(
+  objPropsKeys: T,
+  mainProp : T[number] = objPropsKeys[0]
 ): HTMLElement {
-  if (!mainProp) {
-    throw new Error("The list of property keys seems to be empty");
+  if (!objPropsKeys.includes(mainProp)) {
+    throw new Error("The choosen main property isn't part of the provided property list")
   }
 
   const template = document.getElementById("card-template") as HTMLTemplateElement;

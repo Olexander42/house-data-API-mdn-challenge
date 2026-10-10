@@ -1,7 +1,7 @@
-type NonEmptyString<T> = T extends "" ? never : T;
+//type NonEmptyString<T> = T extends "" ? never : T;
 
 /** Capitalize the first letter and replace "_" and "-" with " ". */
-export const properify = <T extends string>(str: NonEmptyString<T>): string => {
+export const properify = (str: string): string => {
   const trimmedStr = str.trim();
   if (!trimmedStr[0]) {
     console.log("Empty string was passed as a parameter");
