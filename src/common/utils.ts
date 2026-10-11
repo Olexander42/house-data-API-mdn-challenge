@@ -1,17 +1,16 @@
 //type NonEmptyString<T> = T extends "" ? never : T;
 
 /** Capitalize the first letter and replace "_" and "-" with " ". */
-export const properify = (str: string): string => {
-  const trimmedStr = str.trim();
-  if (!trimmedStr[0]) {
-    console.log("Empty string was passed as a parameter");
-    
-    return trimmedStr; // handle empty string
+export const properify = (str: string): string => {  
+  while (str.includes("_") || str.includes("-")) {
+    str = str.replace("_", " ").replace("-", " ");    
   }
 
-  const capitalizedStr = trimmedStr.replace(trimmedStr[0], trimmedStr[0].toUpperCase()) 
-  const properStr = capitalizedStr.replace("_", " ").replace("-", " ");
+  const properStr = str.trim()
+  if (!properStr[0]) return properStr;
 
-  return properStr;
+  const capitalizedProperStr = properStr.replace(properStr[0], properStr[0].toUpperCase());
+  
+  return capitalizedProperStr;
 }
 
