@@ -42,7 +42,7 @@ describe("The DOM tests work correctly", () => {
     div1.innerHTML = prettyHTML;
     div2.innerHTML = uglyHTML;
 
-    const differentHTML = `<select id="price-filter" name="price-filter"><option value="">All options</option></select>`;
+    const differentHTML = `<div><select id="price-filter" name="price-filter"><option value="">All options</option></select></div>`;
     div3.innerHTML = differentHTML;
 
     expect(isNodesSame(div1, div2)).toBe(true);
