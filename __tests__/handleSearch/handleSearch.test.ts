@@ -2,18 +2,12 @@ import "@testing-library/jest-dom"
 
 import handleSearch from "../../src/handleSearch.js"
 
-import { data, SELECTED_OPTIONS_CONFIGS, expectedUniquePropsKeys as propsKeys, expectedCardTemplate as cardTemplate, expectedCard1, expectedCard2 } from "../fixture.js";
+import { data, SELECTED_OPTIONS_CONFIGS, expectedUniquePropsKeys as propsKeys, expectedCardTemplate as cardTemplate, expectedCard1, expectedCard2, resultCountEl, outputEl } from "../fixture.js";
 import { isNodesSame } from "../utils.js";
 
 import type { SelectedOptions } from "../../src/common/types.js";
 
 document.body.innerHTML = "";
-
-const resultCountEl = document.createElement('p');
-resultCountEl.id = "result-count";
-
-const outputEl = document.createElement('section');
-outputEl.id = "output";
 
 document.body.append(resultCountEl, outputEl); 
 
