@@ -10,7 +10,11 @@ const url = 'https://mdn.github.io/shared-assets/misc/houses.json';
 let data: APIResponse;
 
 try {
-  const response = await fetch(url);
+  const response = await fetch(url); 
+  console.log(response.ok);
+  
+  if (!response.ok) throw new Error;
+
   data = await response.json();
 } catch(error) {
   throw new Error;
@@ -23,11 +27,11 @@ because they need to be declared only once. */
 const objPropsKeys = retrieveUniquePropsKeys(data);
 const cardTemplate = initCardTemplate(objPropsKeys, "price");
 
-const form = document.querySelector('form')!;
-const resultCountEl = document.getElementById("result-count")! as HTMLParagraphElement;
-const outputEl = document.getElementById("output")!;
+const formEl = document.querySelector('form') as HTMLFormElement;
+const resultCountEl = document.getElementById("result-count") as HTMLParagraphElement;
+const outputEl = document.getElementById("output") as HTMLElement;
 
-form.addEventListener('submit', (event) => {
+formEl.addEventListener('submit', (event) => {
   const selectedOptions = retrieveSelectedOptions(formData);
 
   handleSearch({

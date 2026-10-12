@@ -1,0 +1,80 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Integration test > The search works correctly with filters 1`] = `
+"<article>
+      <h2 data-label="Price">360000</h2><ul><li data-label="Street">Maple Avenue</li><li data-label="House number">1</li><li data-label="Bedrooms">3</li><li data-label="Bathrooms">1</li><li data-label="Room sizes"><details>
+      <summary>Click to see</summary>
+      <ul><li>bedroom1: 12</li><li>bedroom2: 15</li></ul>
+    </details></li></ul>
+    <template id="expandable">
+    <details>
+      <summary>Click to see</summary>
+      <ul></ul>
+    </details>
+  </template></article>"
+`;
+
+exports[`Integration test > The search works correctly with no filters applied 1`] = `
+"<article>
+      <h2 data-label="Price">360000</h2><ul><li data-label="Street">Maple Avenue</li><li data-label="House number">1</li><li data-label="Bedrooms">3</li><li data-label="Bathrooms">1</li><li data-label="Room sizes"><details>
+      <summary>Click to see</summary>
+      <ul><li>bedroom1: 12</li><li>bedroom2: 15</li></ul>
+    </details></li></ul>
+    <template id="expandable">
+    <details>
+      <summary>Click to see</summary>
+      <ul></ul>
+    </details>
+  </template></article><article>
+      <h2 data-label="Price">480000</h2><ul><li data-label="Street">Tavistock Road</li><li data-label="House number">12</li><li data-label="Bedrooms">4</li><li data-label="Bathrooms">2</li><li data-label="Room sizes"><details>
+      <summary>Click to see</summary>
+      <ul><li>bedroom1: 14</li><li>bedroom2: 12</li></ul>
+    </details></li></ul>
+    <template id="expandable">
+    <details>
+      <summary>Click to see</summary>
+      <ul></ul>
+    </details>
+  </template></article>"
+`;
+
+exports[`The search works correctly with no filters applied 1`] = `
+"<form>
+  <select id="street-filter" name="street-filter">
+    <option value="">All options</option>
+  <option value="Maple Avenue">Maple Avenue</option><option value="Tavistock Road">Tavistock Road</option></select>
+  <select id="bedrooms-filter" name="bedrooms-filter">
+    <option value="">All options</option>
+  <option value="3">3</option><option value="4">4</option></select>
+  <select id="bathrooms-filter" name="bathrooms-filter">
+    <option value="">All options</option>
+  <option value="1">1</option><option value="2">2</option></select>
+</form><p id="result-count">Results returned: 2</p><section id="output"><article>
+      <h2 data-label="Price">360000</h2><ul><li data-label="Street">Maple Avenue</li><li data-label="House number">1</li><li data-label="Bedrooms">3</li><li data-label="Bathrooms">1</li><li data-label="Room sizes"><details>
+      <summary>Click to see</summary>
+      <ul><li>bedroom1: 12</li><li>bedroom2: 15</li></ul>
+    </details></li></ul>
+    <template id="expandable">
+    <details>
+      <summary>Click to see</summary>
+      <ul></ul>
+    </details>
+  </template></article><article>
+      <h2 data-label="Price">480000</h2><ul><li data-label="Street">Tavistock Road</li><li data-label="House number">12</li><li data-label="Bedrooms">4</li><li data-label="Bathrooms">2</li><li data-label="Room sizes"><details>
+      <summary>Click to see</summary>
+      <ul><li>bedroom1: 14</li><li>bedroom2: 12</li></ul>
+    </details></li></ul>
+    <template id="expandable">
+    <details>
+      <summary>Click to see</summary>
+      <ul></ul>
+    </details>
+  </template></article></section><div id="templates">  
+  <template id="card-template">
+    <article>
+      <ul></ul>
+    </article>
+  </template>
+  
+  </div>"
+`;

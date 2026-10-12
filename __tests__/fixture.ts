@@ -79,21 +79,23 @@ export const expectedFormDOM =  `
   </select>
 ` as const
 
-export const outputSection = `  
-  <section id="output">
-      <template id="card-template">
-        <article>
-          <ul></ul>
-        </article>
-      </template>
-      <template id="expandable">
-        <details>
-          <summary>${closed}</summary>
-          <ul></ul>
-        </details>
-      </template>
-    </section>
+export const divTemplatesDOM = `  
+  <template id="card-template">
+    <article>
+      <ul></ul>
+    </article>
+  </template>
+  <template id="expandable">
+    <details>
+      <summary>${closed}</summary>
+      <ul></ul>
+    </details>
+  </template>
   `
+
+export const divTemplatesEl = document.createElement('div');
+divTemplatesEl.innerHTML = divTemplatesDOM;
+divTemplatesEl.id = "templates";
 
 const propsKeys = expectedUniquePropsKeys;
 
@@ -117,6 +119,12 @@ const expectedCardTemplateDOM = `
 `
 
 expectedCardTemplate.innerHTML = expectedCardTemplateDOM;
+
+export const resultCountEl = document.createElement('p');
+resultCountEl.id = "result-count";
+
+export const outputEl = document.createElement('section');
+outputEl.id = "output";
 
 export const obj = data[0];
 
