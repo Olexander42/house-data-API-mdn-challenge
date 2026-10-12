@@ -1,6 +1,6 @@
 import { isSameLength, isArrsMatch, isNodesSame } from "../utils.js";
 import { filtersNames, initialFormDOM, expectedFiltersOptions, data, expectedFormDOM} from "../fixture.js";
-import { formData, initFiltersProps, initFiltersOptions, populateFiltersOptions } from "../../src/init/initForm.js";
+import { formData, initFiltersProps, initFiltersOptions, populateFiltersOptions, initForm } from "../../src/init/initForm.js";
 
 
 document.body.innerHTML = initialFormDOM;
@@ -45,6 +45,13 @@ populateFiltersOptions();
 
 test("Options are populated correctly", () => {
   expect(isNodesSame(expectedForm, document.body)).toBe(true);
+})
+
+test("`initForm` orchestrates functions correctly", () => {
+  document.body.innerHTML = initialFormDOM;
+  initForm(data);
+
+  expect(isNodesSame(expectedForm, document.body));
 })
 
 
