@@ -11,7 +11,6 @@ document.body.append(resultCountEl, outputEl, divTemplatesEl);
 
 function pressSearch(selectedOptions: SelectedOptions): void {
   handleSearch({
-    event: new SubmitEvent("submit"),
     data,
     selectedOptions,
     objPropsKeys: propsKeys,

@@ -5,7 +5,6 @@ import { attachSummaryListeners } from "./ui/attachSummaryListeners.js";
 
 
 type HandleSearchInput = {
-  event: SubmitEvent,
   selectedOptions: SelectedOptions,
   data: APIResponse,
   objPropsKeys: string[],
@@ -16,10 +15,8 @@ type HandleSearchInput = {
 
 /** Renders a search result. */
 export default function handleSearch(
-  { event, selectedOptions, data, objPropsKeys, cardTemplate, outputEl, resultCountEl }: HandleSearchInput
+  { selectedOptions, data, objPropsKeys, cardTemplate, outputEl, resultCountEl }: HandleSearchInput
 ): void {
-  event.preventDefault();
-
   const searchResult = data.filter((obj) => isObjMatchesFilters(obj, selectedOptions));
 
   resultCountEl.textContent = `Results returned: ${searchResult.length}`;

@@ -28,10 +28,11 @@ const resultCountEl = document.getElementById("result-count") as HTMLParagraphEl
 const outputEl = document.getElementById("output") as HTMLElement;
 
 formEl.addEventListener('submit', (event) => {
+  event.preventDefault();
+  
   const selectedOptions = retrieveSelectedOptions(formData);
 
   handleSearch({
-    event,
     selectedOptions,
     data,
     objPropsKeys,
