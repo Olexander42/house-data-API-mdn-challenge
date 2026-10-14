@@ -28,10 +28,6 @@ export default function initCardTemplate<T extends readonly[string, ...string[]]
     propsList.append(listItem);
   })
 
-  const templateExpandable = document.getElementById("expandable") as HTMLTemplateElement;
-
-  articleEl.append(templateExpandable);
-
   return articleEl;
 }
 

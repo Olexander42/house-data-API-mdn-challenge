@@ -2,14 +2,12 @@ import "@testing-library/jest-dom"
 
 import handleSearch from "../../src/handleSearch.js"
 
-import { data, SELECTED_OPTIONS_CONFIGS, expectedUniquePropsKeys as propsKeys, expectedCardTemplate as cardTemplate, expectedCard1, expectedCard2, resultCountEl, outputEl } from "../fixture.js";
+import { data, SELECTED_OPTIONS_CONFIGS, expectedUniquePropsKeys as propsKeys, expectedCardTemplate as cardTemplate, expectedCard1, expectedCard2, resultCountEl, outputEl, divTemplatesEl } from "../fixture.js";
 import { isNodesSame } from "../utils.js";
 
 import type { SelectedOptions } from "../../src/common/types.js";
 
-document.body.innerHTML = "";
-
-document.body.append(resultCountEl, outputEl); 
+document.body.append(resultCountEl, outputEl, divTemplatesEl); 
 
 function pressSearch(selectedOptions: SelectedOptions): void {
   handleSearch({
@@ -40,8 +38,11 @@ suite("Search output is rendered correctly", () => {
     test("Output is rendered correctly", () => {
       const expectedSection = document.createElement('section');
       const actualSection = document.getElementById("output")!;
+      console.log(actualSection.innerHTML);
       
       expectedSection.append(expectedCard1, expectedCard2);
+     
+      
 
       expect(isNodesSame(expectedSection, actualSection)).toBe(true);
     })

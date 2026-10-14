@@ -1,9 +1,9 @@
 import initCardTemplate from "../../src/init/initTemplate.js";
-import { expectedUniquePropsKeys as propsKeys, expectedCardTemplate, divTemplatesDOM } from "../fixture.js";
+import { expectedUniquePropsKeys as propsKeys, expectedCardTemplate, divTemplatesEl } from "../fixture.js";
 import { isNodesSame } from "../utils.js";
 
 
-document.body.innerHTML = divTemplatesDOM;
+document.body.append(divTemplatesEl);
 
 test("Card template is generated correctly", () => {
   const actualCardTemplate = initCardTemplate(propsKeys);

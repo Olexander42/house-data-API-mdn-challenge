@@ -1,7 +1,9 @@
 import { populateCard } from "../../src/handleSearch.js";
-import { expectedCardTemplate, expectedCard1, obj, expectedUniquePropsKeys as propsKeys,  } from "../fixture.js";
+import { expectedCardTemplate, expectedCard1, obj, expectedUniquePropsKeys as propsKeys, divTemplatesEl,  } from "../fixture.js";
 import { isNodesSame } from "../utils.js";
 
+
+document.body.append(divTemplatesEl)
 
 const actualCard = populateCard(obj, propsKeys, expectedCardTemplate);
 

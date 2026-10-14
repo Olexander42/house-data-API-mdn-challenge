@@ -110,12 +110,6 @@ const expectedCardTemplateDOM = `
       <li data-label="${properify(propsKeys[4])}"></li>
       <li data-label="${properify(propsKeys[5])}"></li>
     </ul>
-    <template id="expandable">
-      <details>
-        <summary>${closed}</summary>
-        <ul></ul>
-      </details>
-    </template>
 `
 
 expectedCardTemplate.innerHTML = expectedCardTemplateDOM;
@@ -177,12 +171,6 @@ expectedCard1.innerHTML = `
       </details>
     </li>
   </ul>
-  <template id="expandable">
-    <details>
-      <summary>${closed}</summary>
-      <ul></ul>
-    </details>
-  </template>
 `
 
 expectedCard2.innerHTML = `  
@@ -202,12 +190,6 @@ expectedCard2.innerHTML = `
       </details>
     </li>
   </ul>
-  <template id="expandable">
-    <details>
-      <summary>${closed}</summary>
-      <ul></ul>
-    </details>
-  </template>
 `
 
 

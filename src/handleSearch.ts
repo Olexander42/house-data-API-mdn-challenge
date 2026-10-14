@@ -47,6 +47,8 @@ function isObjMatchesFilters(obj: DataUnit, selectedOptions: SelectedOptions): b
   return true;
 } 
 
+let detailsTemplate: HTMLElement;
+
 function populateCard(obj: DataUnit, objPropsKeys: string[], cardTemplate: HTMLElement) {
   const card = cardTemplate.cloneNode(true) as HTMLElement;
   
@@ -57,6 +59,13 @@ function populateCard(obj: DataUnit, objPropsKeys: string[], cardTemplate: HTMLE
     const propVal = obj[objPropKey];
     if (typeof propVal !== 'object') propEl.textContent = String(propVal);
     else {      
+      detailsTemplate ??= (() => {
+        const expandableTemplate = document.querySelector("#expandable") as HTMLTemplateElement;      
+        const detailsTemplate = expandableTemplate.content.firstElementChild as HTMLElement;
+        
+        return detailsTemplate
+      })()
+
       const detailsEl = document.importNode(detailsTemplate, true);
       const listEl = detailsEl.querySelector('ul') as HTMLUListElement;
 
