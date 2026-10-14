@@ -42,6 +42,7 @@ jobs:
           mkdir -p dist
           cp index.html dist/
           cp -R built dist/
+          cp style.css dist/
 
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v3

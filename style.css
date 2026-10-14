@@ -70,5 +70,12 @@ select {
   }
 }
 
+button,
+summary {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 
 
