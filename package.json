@@ -7,6 +7,7 @@
     "vitest": "^4.0.16"
   },
   "scripts": {
-    "coverage": "vitest run --config __tests__/vitest.config.ts --coverage"
+    "coverage": "vitest run --config __tests__/vitest.config.ts --coverage",
+    "build": "tsc"
   }
 }
