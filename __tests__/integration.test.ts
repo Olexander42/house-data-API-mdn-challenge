@@ -4,10 +4,8 @@ suite("Integration test", () => {
   let formEl = document.createElement('form');
 
   // Mock HTTP request
-  const mockJson = vi.fn().mockResolvedValue(data);
   const mockFetch = vi.fn().mockResolvedValue({
-    json: mockJson,
-    ok: true
+    json: () => data
   })
 
   vi.stubGlobal('fetch', mockFetch)
@@ -43,9 +41,7 @@ suite("Integration test", () => {
   })
 
   test("Bad HTTP request gets rejected", async () => {
-    const mockFaultyFetch = vi.fn().mockResolvedValue({
-      ok: false
-    })
+    const mockFaultyFetch = vi.fn().mockRejectedValue(new TypeError("Failed to load"));
 
     vi.unstubAllGlobals();
     vi.stubGlobal('fetch', mockFaultyFetch)
