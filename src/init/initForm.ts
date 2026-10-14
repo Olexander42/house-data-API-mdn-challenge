@@ -1,4 +1,4 @@
-import type { APIResponse, FiltersData } from "../common/types.ts";
+import type { APIResponse, DataUnit, FiltersData } from "../common/types.ts";
 
 
 export const formData: FiltersData = {};
@@ -23,18 +23,9 @@ function initFiltersProps(selectElements: HTMLSelectElement[]): void {
 /** Go through API response and collect filters options'  unique values */
 function initFiltersOptions(data: APIResponse): void {
   for (const [filterName, filterData] of Object.entries(formData)) {
-    filterData.options = ((filterName) => {
-      const options: string[] = [];
-
-      for (const obj of data) {
-        const option = String(obj[filterName]);
-        if (!options.includes(option)) {
-          options.push(option);
-        }
-      }
-
-      return options.sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
-    })(filterName);
+    const options = data.map((dataUnit: DataUnit) => String(dataUnit[filterName]));
+    const uniqueOptions = [...new Set(options)];
+    filterData.options = uniqueOptions.sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
   }
 }
 
