@@ -58,9 +58,8 @@ function populateCard(obj: DataUnit, objPropsKeys: string[], cardTemplate: HTMLE
     else {      
       detailsTemplate ??= (() => {
         const expandableTemplate = document.querySelector("#expandable") as HTMLTemplateElement;      
-        const detailsTemplate = expandableTemplate.content.firstElementChild as HTMLElement;
         
-        return detailsTemplate
+        return expandableTemplate.content.firstElementChild as HTMLElement;
       })()
 
       const detailsEl = document.importNode(detailsTemplate, true);

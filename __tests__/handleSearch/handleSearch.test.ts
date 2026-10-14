@@ -37,12 +37,9 @@ suite("Search output is rendered correctly", () => {
     test("Output is rendered correctly", () => {
       const expectedSection = document.createElement('section');
       const actualSection = document.getElementById("output")!;
-      console.log(actualSection.innerHTML);
       
       expectedSection.append(expectedCard1, expectedCard2);
      
-      
-
       expect(isNodesSame(expectedSection, actualSection)).toBe(true);
     })
   })

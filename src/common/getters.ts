@@ -17,7 +17,7 @@ export function retrieveUniquePropsKeys(data: APIResponse): [string, ...string[]
 
   data.forEach((dataUnit) => {
     const propertyNames = Object.keys(dataUnit);
-    propertyNames.forEach((propertyName) => uniquePropsKeys.add(String(propertyName))); 
+    propertyNames.forEach((propertyName) => uniquePropsKeys.add(propertyName)); 
   })
 
   const result = [...uniquePropsKeys];
