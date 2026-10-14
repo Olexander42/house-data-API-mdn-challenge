@@ -128,7 +128,7 @@ outputEl.id = "output";
 
 export const obj = data[0];
 
-export const SELECTED_OPTIONS_CONFIGS: Record<"noFilters" | "matchSecond", SelectedOptions> = {
+export const SELECTED_OPTIONS_CONFIGS: Record<"noFilters" | "matchSecond" | "matchNone", SelectedOptions> = {
   noFilters: {
     [filtersNames[0]]: "", 
     [filtersNames[1]]: "",
@@ -139,6 +139,12 @@ export const SELECTED_OPTIONS_CONFIGS: Record<"noFilters" | "matchSecond", Selec
     [filtersNames[0]]: getFilterOption(0, 1),
     [filtersNames[1]]: getFilterOption(1, 1),
     [filtersNames[2]]: getFilterOption(2, 1),
+  },
+
+  matchNone: {
+    [filtersNames[0]]: getFilterOption(0, 0),
+    [filtersNames[1]]: getFilterOption(1, 1),
+    [filtersNames[2]]: getFilterOption(2, 0),
   },
 };
 

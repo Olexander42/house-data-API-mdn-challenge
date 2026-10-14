@@ -24,9 +24,9 @@ function pressSearch(selectedOptions: SelectedOptions): void {
 }
 
 suite("Search output is rendered correctly", () => {
-  suite("No filters applied", () => {
+  suite("Match all", () => {
     beforeAll(() => {
-      pressSearch(SELECTED_OPTIONS_CONFIGS.noFilters);
+      pressSearch(SELECTED_OPTIONS_CONFIGS.matchNone);
       pressSearch(SELECTED_OPTIONS_CONFIGS.noFilters);
     })
 
@@ -45,20 +45,18 @@ suite("Search output is rendered correctly", () => {
 
       expect(isNodesSame(expectedSection, actualSection)).toBe(true);
     })
-
-
   })
 
-  suite("Filters are applied", () => {
+  suite("Match something", () => {
     beforeAll(() => {
       pressSearch(SELECTED_OPTIONS_CONFIGS.noFilters);
       pressSearch(SELECTED_OPTIONS_CONFIGS.matchSecond);
     })
-
+ 
     test("The search count is correct", () => {
       const actualSearchCount = document.getElementById("result-count") as HTMLParagraphElement;
       
-      expect(actualSearchCount).toHaveTextContent(`Results returned: 1`);
+      expect(actualSearchCount).toHaveTextContent("Results returned: 1");
     })
 
     test("Cards are rendered correctly", () => {
@@ -69,6 +67,27 @@ suite("Search output is rendered correctly", () => {
       
       expect(isNodesSame(expectedSection, actualSection)).toBe(true);
 
+    })
+  })
+
+  suite("Match none", () => {
+    beforeAll(() => {
+      pressSearch(SELECTED_OPTIONS_CONFIGS.matchNone);
+      pressSearch(SELECTED_OPTIONS_CONFIGS.matchNone);
+    })
+
+
+    test("The search count is correct", () => {
+      const actualSearchCount = document.getElementById("result-count") as HTMLParagraphElement;
+      
+      expect(actualSearchCount).toHaveTextContent("Results returned: 0");
+    })
+
+    test("Cards are rendered correctly", () => {
+      const expectedSection = document.createElement('section');
+      const actualSection = document.getElementById("output") as HTMLElement;
+      
+      expect(isNodesSame(expectedSection, actualSection)).toBe(true);
     })
   })
 })
