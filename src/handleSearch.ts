@@ -1,6 +1,7 @@
 import { properify } from "./common/utils.js";
 
 import type { APIResponse, SelectedOptions, DataUnit } from "./common/types.js";
+import { attachSummaryListeners } from "./ui/attachSummaryListeners.js";
 
 
 type HandleSearchInput = {
@@ -28,6 +29,8 @@ export default function handleSearch(
     const card = populateCard(result, objPropsKeys, cardTemplate);    
     outputEl.append(card);
   })
+
+  attachSummaryListeners();
 }
 
 function isObjMatchesFilters(obj: DataUnit, selectedOptions: SelectedOptions): boolean {
@@ -54,8 +57,6 @@ function populateCard(obj: DataUnit, objPropsKeys: string[], cardTemplate: HTMLE
     const propVal = obj[objPropKey];
     if (typeof propVal !== 'object') propEl.textContent = String(propVal);
     else {      
-      const expandableTemplate = card.querySelector("#expandable") as HTMLTemplateElement;      
-      const detailsTemplate = expandableTemplate.content.firstElementChild as HTMLElement;
       const detailsEl = document.importNode(detailsTemplate, true);
       const listEl = detailsEl.querySelector('ul') as HTMLUListElement;
 
