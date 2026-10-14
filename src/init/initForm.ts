@@ -33,7 +33,7 @@ function initFiltersOptions(data: APIResponse): void {
         }
       }
 
-      return options.sort();
+      return options.sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
     })(filterName);
   }
 }
