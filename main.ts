@@ -9,12 +9,8 @@ const url = 'https://mdn.github.io/shared-assets/misc/houses.json';
 
 let data: APIResponse;
 
-try {
-  const response = await fetch(url);   
-  data = await response.json();
-} catch(error) {
-  throw new Error;
-}
+const response = await fetch(url);   
+data = await response.json();
 
 initForm(data);
 
@@ -29,7 +25,7 @@ const outputEl = document.getElementById("output") as HTMLElement;
 
 formEl.addEventListener('submit', (event) => {
   event.preventDefault();
-  
+
   const selectedOptions = retrieveSelectedOptions(formData);
 
   handleSearch({
