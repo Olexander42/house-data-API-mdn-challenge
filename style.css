@@ -2,21 +2,21 @@ body {
   font: 1.1em / 1.5 system-ui;
   width: clamp(480px, 90%, 1200px);
   margin: 0 auto;
+  min-height: 100dvh;
+  background-image: linear-gradient(356deg, #b9881b94, #00000017);
 }
 
 form {
   padding: 1em;
-}
-
-form,
-#result-count {
-  background-color: silver;
-  border: 1px solid;
+  background-color: #dea3201f;
+  border-radius: 20px;
 }
 
 #result-count {
   width: max-content;
   padding: 0.5em;
+  border-radius: 10px;
+  background-color: #a320de17;
 }
 
 
@@ -45,13 +45,13 @@ select {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+  align-items: start;
   gap: 50px;
 
   & article {
     width: clamp(200px, 25%, 300px);
     padding: 0 20px;
-    background-color: #efefef;
-    border: 2px solid #cccccc;
+    background-color: #20dea345;
     border-radius: 10px;
 
     & [data-label] {
